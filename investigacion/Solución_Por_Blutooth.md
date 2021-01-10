@@ -11,3 +11,5 @@ de estos dispositivos va de los $20.000 a los $90.000 pesos chilenos ademas de v
 si llegaramos a ocupar esta opción necesitariamos:
 - receptor/transmisor bluetooth
 - alimentador
+
+## Falta investigar mas 
