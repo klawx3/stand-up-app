@@ -1,4 +1,4 @@
-# Solución Por Blutooth
+# Solución Por Bluetooth
 La solución por esta via se podria ver factible pero hasta que nos ponemos a investigar ya que podemos optener un valor aproximado del indicador de señal,
 pero al debemos tener en cuenta que esta solucion esta sujeta al entorno como puede ser algunas superficies de reflexión o si entre el celular y el receptor hay algo entre estos.
 Por otro lado dependemos de la capacidad del dispositivo ya que no todos tienen el mismo rango de señal.
