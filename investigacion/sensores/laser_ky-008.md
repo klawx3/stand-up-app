@@ -9,5 +9,5 @@ comprobando que la luz emitida por una parte sea recibida por su complemento. Ti
 
 ## Páginas
 
-https://www.tindie.com/products/eLabpeers/ky-008-laser-x-laser-detector/ (Éste cuenta con láser y lector) 
-http://microelectronicadesign.com/producto/modulo-sensor-laser-ky-008/
+- https://www.tindie.com/products/eLabpeers/ky-008-laser-x-laser-detector/ (Éste cuenta con láser y lector)
+- http://microelectronicadesign.com/producto/modulo-sensor-laser-ky-008/
