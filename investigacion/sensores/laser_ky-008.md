@@ -7,6 +7,10 @@ comprobando que la luz emitida por una parte sea recibida por su complemento. Ti
 - Su valor ronda entre los $2.500 y los $6.000.
 - Cabe mencionar que la luz láser emitida por el sensor podría resultar dañino para el ojo, si se le mira directamente.
 
+### Aplicación
+- Podría detectar si hay piernas obstaculizando el láser, poco más arriba de la altura de la silla. 
+
+
 ### Páginas
 
 - https://www.tindie.com/products/eLabpeers/ky-008-laser-x-laser-detector/ (Éste cuenta con láser y lector)
