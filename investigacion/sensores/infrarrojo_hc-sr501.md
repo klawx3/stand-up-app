@@ -1,6 +1,6 @@
 # Sensor infrarrojo HC-SR501
 
-## Información
+## Descripción
   - Dado que nuestro cuerpo tiene una temperatura "alta", ésta produce radiación (como todo, sin embargo, a mayor temp, mayor radiación) y nos vuelve
   "visibles" para éste sensor infrarrojo que se encarga de captar radiación.
   - Para detectar movimiento sólo basta encontrarse dentro de la franja de "observación" del sensor, el cual, posee un alcance de hasta 7 metros.
