@@ -9,7 +9,7 @@
   de los objetos (dentro del rango que éstos posean).
   
 ### Aplicación
-  - Podría ocuparse para detectar movimiento por debajo de la mesa, ésto podría ayudar a establecer si la persona se encuentra sentada (dado que
+  - Podría ocuparse para detectar movimiento por debajo de la mesa, lo cual, informaría si la persona se encuentra sentada (dado que
   tendría las piernas debajo la mesa).
 
 ### Páginas
