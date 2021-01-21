@@ -1,4 +1,4 @@
 # Investigación sobre notificaciones en Android.
 
-## Recursos 
+## Recursos :
 - https://developer.android.com/training/notify-user/build-notification#java
