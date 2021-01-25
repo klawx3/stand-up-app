@@ -37,6 +37,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+
+                //Se intenta solucionar mal funcionamiento en el cerrar sesión.
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                
                 startActivity(intent);
             }
         });
