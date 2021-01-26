@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     Map<String, String> header = new HashMap<>();
 
                     header.put("content-type","application/json");
-                    header.put("authorization","key=AAAA0SS_CR0:APA91bGtwkbPLjdchmw5I9m7FS1ESYY74K7BTdlLwuYcW8Y6ahGJ3Fl6d_rf7iljsgyqBH6-GFYtv2XKgpN1gbuDf9KkDkSL6BUtJILliqEX7ZwiZtF82QIMUNkbZ0-ambFfVPwEGUFe"); //la key es la del proyecto de firebase
+                    header.put("authorization",""); //la key es la del proyecto de firebase
                     return  header;
 
                 }
