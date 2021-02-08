@@ -71,10 +71,7 @@ public class homeActivity extends AppCompatActivity {
         final FirebaseUser use = FirebaseAuth.getInstance().getCurrentUser();
 
         userunico();
-
-
     }//fin
-
     private void userunico() {
         ref_user.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
