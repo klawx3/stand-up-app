@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "170558051749",
-    "project_id": "stand-up-app",
-    "storage_bucket": "stand-up-app.appspot.com"
+    "project_number": "486805637807",
+    "project_id": "st-stand-up-app",
+    "storage_bucket": "st-stand-up-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:170558051749:android:fb822cca8dbc54f636044c",
+        "mobilesdk_app_id": "1:486805637807:android:a8c238f7ccbc6b602e225a",
         "android_client_info": {
           "package_name": "com.santotomas.stand_up"
         }
       },
       "oauth_client": [
         {
-          "client_id": "170558051749-s6m27ttefd75is8chqgt8fesov780d3c.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.santotomas.stand_up",
-            "certificate_hash": "c0e50ef503c1687456e2e68b759b74708f4b759c"
-          }
-        },
-        {
-          "client_id": "170558051749-kdr7rc72i2il0oflf9j2mhgfjnvm563f.apps.googleusercontent.com",
+          "client_id": "486805637807-it9600res99u1pehekgifd3icjtinors.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCDLG29jleKVfGBIql45XvEHZwCpp7l4wM"
+          "current_key": "AIzaSyCRh5WGTgU-nsAAyCJdT50Py2ksKWK4kBY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "170558051749-kdr7rc72i2il0oflf9j2mhgfjnvm563f.apps.googleusercontent.com",
+              "client_id": "486805637807-it9600res99u1pehekgifd3icjtinors.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
