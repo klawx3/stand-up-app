@@ -20,10 +20,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import pojos.Users;
+
 public class HomeActivity extends AppCompatActivity {
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref_user = database.getReference("Users").child(user.getUid());
 
     @SuppressLint("WrongConstant")
     @Override
@@ -34,7 +45,31 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.txt_actionbar);
 
+        userdatabase();
+
+
     } // ------
+
+    private void userdatabase() {
+        ref_user.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (!snapshot.exists()){
+                    Users users= new Users(
+                            user.getUid(),
+                            user.getDisplayName(),
+                            user.getEmail(),
+                            user.getPhotoUrl().toString());
+                    ref_user.setValue(users);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
