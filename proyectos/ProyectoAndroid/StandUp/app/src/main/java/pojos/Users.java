@@ -3,7 +3,7 @@ package pojos;
 public class Users {
 
     private String id;
-    private String nomre;
+    private String nombre;
     private String mail;
     private String foto;
 
@@ -12,7 +12,7 @@ public class Users {
 
     public Users(String id, String nomre, String mail, String foto) {
         this.id = id;
-        this.nomre = nomre;
+        this.nombre = nomre;
         this.mail = mail;
         this.foto = foto;
     }
@@ -26,11 +26,11 @@ public class Users {
     }
 
     public String getNomre() {
-        return nomre;
+        return nombre;
     }
 
     public void setNomre(String nomre) {
-        this.nomre = nomre;
+        this.nombre = nomre;
     }
 
     public String getMail() {
