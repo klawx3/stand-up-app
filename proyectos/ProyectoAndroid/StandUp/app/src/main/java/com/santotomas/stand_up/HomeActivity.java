@@ -58,7 +58,8 @@ public class HomeActivity extends AppCompatActivity {
                     Users users= new Users(
                             user.getUid(),
                             user.getDisplayName(),
-                            user.getEmail());
+                            user.getEmail(),
+                            user.getPhotoUrl().toString());
                     ref_user.child("avisos").push().setValue("4");
                     ref_user.setValue(users);
 
