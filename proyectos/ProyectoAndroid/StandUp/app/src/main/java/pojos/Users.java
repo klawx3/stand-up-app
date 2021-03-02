@@ -5,16 +5,15 @@ public class Users {
     private String id;
     private String nombre;
     private String mail;
-    private String foto;
+
 
     public Users() {
     }
 
-    public Users(String id, String nomre, String mail, String foto) {
+    public Users(String id, String nomre, String mail) {
         this.id = id;
         this.nombre = nomre;
         this.mail = mail;
-        this.foto = foto;
     }
 
     public String getId() {
@@ -39,13 +38,5 @@ public class Users {
 
     public void setMail(String mail) {
         this.mail = mail;
-    }
-
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
     }
 }
