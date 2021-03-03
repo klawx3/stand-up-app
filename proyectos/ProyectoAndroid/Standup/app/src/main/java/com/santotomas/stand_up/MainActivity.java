@@ -31,9 +31,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    //NUEVOS
     private GoogleSignInClient mGoogleSignInClient;
-    //NUEVOS
 
 
     SignInButton btn_inicar;
@@ -65,9 +63,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //NUEVOS
         createRequest();
-        //NUEVOS
 
         mfirebaseAuth = FirebaseAuth.getInstance();
 
@@ -81,40 +77,14 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.txt_actionbar);
 
-        /* COMO INGRESO SIN BOTON
-                        mfirebaseAuth = FirebaseAuth.getInstance();
-                mauthStateListener = new FirebaseAuth.AuthStateListener() {
-                    @Override
-                    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                        FirebaseUser user = firebaseAuth.getCurrentUser();
-                        if (user != null) {
-                            goHome();
-                            Toast.makeText(MainActivity.this, "Login con éxito", Toast.LENGTH_SHORT).show();
-                        } else {
-                            startActivityForResult(
-                                    AuthUI.getInstance()
-                                            .createSignInIntentBuilder()
-                                            .setAvailableProviders(providers)
-                                            .setIsSmartLockEnabled(false)
-                                            .build(), SIGN_IN
-                            );
-                        }
-                    }
-                };
-        */
-    } // ---------
-
-    //NUEVOS
+    }
 
     private void createRequest() {
-
-        // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
-        // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
@@ -126,16 +96,12 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
-                // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
-                // Google Sign In failed, update UI appropriately
-                // ...
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
@@ -148,37 +114,18 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mfirebaseAuth.getCurrentUser();
                             Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
                             startActivity(intent);
+                            Toast.makeText(MainActivity.this, "Sesión iniciada", Toast.LENGTH_SHORT).show();
                         } else {
-                            // If sign in fails, display a message to the user.
                             Toast.makeText(MainActivity.this, "Acceso denegado", Toast.LENGTH_SHORT).show();
                         }
 
-                        // ...
+
                     }
                 });
     }
-
-
-    //NUEVOS
-
-
-    /* NECESARIOS PARA SIN BOTON
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mfirebaseAuth.addAuthStateListener(mauthStateListener);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mfirebaseAuth.removeAuthStateListener(mauthStateListener);
-    }
-     */
 
     private void goHome() {
         Intent i = new Intent(this,HomeActivity.class);

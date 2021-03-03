@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".AlertActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Inicio de trabajo de pie:"
+        tools:visibility="visible"
+        android:textSize="20sp"/>
+
+    <NumberPicker
+        android:id="@+id/number_inicio"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:layout_marginVertical="10sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Especifique mensaje: "
+        />
+
+    <EditText
+        android:id="@+id/txt_msje_inicio"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fin de trabajo de pie:"
+        android:textSize="20sp"
+        android:layout_marginVertical="10sp"/>
+
+    <NumberPicker
+        android:id="@+id/number_fin"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:layout_marginVertical="10sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Especifique mensaje"/>
+    <EditText
+        android:id="@+id/txt_msje_fin"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_confirmar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crear Aviso."/>
+
+    <TextView
+        android:id="@+id/txt_verhorarios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Horario final"
+        android:layout_marginVertical="10sp"/>
+
+    <TextView
+        android:id="@+id/mostrar_result_incio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aquí se mostrará el mensaje de inicio"/>
+
+    <TextView
+        android:id="@+id/mostrar_result_fin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aquí se mostrará el mensaje de fin"/>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"/>
+
+    <Button
+        android:id="@+id/btn_volver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volver"/>
+
+
+</LinearLayout>
