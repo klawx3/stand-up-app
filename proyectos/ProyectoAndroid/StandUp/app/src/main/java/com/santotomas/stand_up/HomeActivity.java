@@ -10,11 +10,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,11 +23,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import pojos.Users;
 
 public class HomeActivity extends AppCompatActivity {
+
+    private final static String AVISOS = "avisos";
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -60,7 +57,7 @@ public class HomeActivity extends AppCompatActivity {
                             user.getDisplayName(),
                             user.getEmail(),
                             user.getPhotoUrl().toString());
-                    ref_user.child("avisos").push().setValue("4");
+                    ref_user.child(AVISOS).push().setValue("4");
                     ref_user.setValue(users);
 
                 }
@@ -96,8 +93,8 @@ public class HomeActivity extends AppCompatActivity {
                                 backLogin();
                             }
                         });
-            case R.id.item_perfil:
-                goProfile();
+            case R.id.item_alert:
+                goAlert();
 
         }
         return super.onOptionsItemSelected(item);
@@ -109,8 +106,8 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    private void goProfile(){
-        Intent i = new Intent(this,ProfileActivity.class);
+    private void goAlert(){
+        Intent i = new Intent(this, AlertActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
     }

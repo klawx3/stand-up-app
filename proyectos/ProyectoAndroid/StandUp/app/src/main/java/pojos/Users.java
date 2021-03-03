@@ -10,9 +10,9 @@ public class Users {
     public Users() {
     }
 
-    public Users(String id, String nomre, String mail, String foto) {
+    public Users(String id, String nombre, String mail, String foto) {
         this.id = id;
-        this.nombre = nomre;
+        this.nombre = nombre;
         this.mail = mail;
         this.foto = foto;
     }
@@ -29,8 +29,8 @@ public class Users {
         return nombre;
     }
 
-    public void setNomre(String nomre) {
-        this.nombre = nomre;
+    public void setNomre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getMail() {
