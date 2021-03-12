@@ -57,7 +57,6 @@ public class HomeActivity extends AppCompatActivity {
                             user.getDisplayName(),
                             user.getEmail(),
                             user.getPhotoUrl().toString());
-                    ref_user.child(AVISOS).push().setValue("4");
                     ref_user.setValue(users);
 
                 }

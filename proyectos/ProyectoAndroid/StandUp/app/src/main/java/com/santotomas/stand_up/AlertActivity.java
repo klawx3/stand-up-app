@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SurfaceHolder;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,11 +26,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
-public class AlertActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
+import pojos.Avisos;
 
+public class AlertActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
+     int cont = 0;
     TextView txt_user, txt_mail,txt_horarios,txt_msje_inicio,txt_mensaje_fin;
     Button btn_volver,btn_confirmar;
     NumberPicker n_inicio, n_fin;
@@ -58,7 +66,7 @@ public class AlertActivity extends AppCompatActivity implements NumberPicker.OnV
 
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         n_inicio.setMinValue(1);
         n_inicio.setMaxValue(24);
@@ -85,17 +93,26 @@ public class AlertActivity extends AppCompatActivity implements NumberPicker.OnV
                         Toast.makeText(AlertActivity.this, "Ingrese hora de fin válida.", Toast.LENGTH_SHORT).show();
                     }
                 }else{
+                    cont ++;
                     Toast.makeText(AlertActivity.this, "Entró.", Toast.LENGTH_SHORT).show();
+                    final DatabaseReference A = database.getReference("Users").child(user.getUid()).child("Avisos");
+                    A.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            A.child("Aviso"+cont).setValue('{'+"hora :"+n_inicio.getValue()+"hrs"+","
+                                    +"mensaje inicio :"+msje_inicio.getText()+","
+                                    +"Hora Fin :"+n_fin.getValue()+"hrs"+","
+                                    +"Mensaje fin :"+msje_fin.getText()+'}');
+                        }
 
-                    //AQUÍ SE DEBE HACER EL INSERT CON: "HORA INICIO", "HORA FIN", "MENSAJE INICIO" = MENSAJE DE NOT. INICIO / "MENSJAE FIN" = MSJE DE NOT. DE TERMINO ||SE USA U-ID
-                    txt_horarios.setText("Horario inicio: "+n_inicio.getValue()+"hrs || Horario fin: "+n_fin.getValue()+"hrs");
-                    txt_msje_inicio.setText(msje_inicio.getText());
-                    txt_mensaje_fin.setText(msje_fin.getText());
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
-
             }
         });
-
     } // ------
 
     @Override
