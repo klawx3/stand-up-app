@@ -1,27 +1,31 @@
 package pojos;
 
 public class Avisos {
-    private String tipo;
-    private String mensaje;
+    private String titulo;
     private String hora;
-    private String estado;
+    private String mensaje;
+    private String horafin;
+    private String mensajefin;
+
+
 
     public Avisos() {
+
     }
 
-    public Avisos(String tipo, String mensaje, String hora, String estado) {
-        this.tipo = tipo;
+    public Avisos(String titulo ,String hora, String mensaje, String horafin, String mensajefin) {
         this.mensaje = mensaje;
+        this.mensajefin = mensajefin;
         this.hora = hora;
-        this.estado = estado;
+        this.horafin = horafin;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getMensaje() {
@@ -32,6 +36,14 @@ public class Avisos {
         this.mensaje = mensaje;
     }
 
+    public String getMensajefin() {
+        return mensajefin;
+    }
+
+    public void setMensajefin(String mensajefin) {
+        this.mensajefin = mensajefin;
+    }
+
     public String getHora() {
         return hora;
     }
@@ -40,11 +52,9 @@ public class Avisos {
         this.hora = hora;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getHorafin() {
+        return horafin;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
+
 }

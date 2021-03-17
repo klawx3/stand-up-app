@@ -34,6 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import adapter.AdapterAviso;
 import pojos.Avisos;
 
 public class AlertActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
@@ -65,6 +66,8 @@ public class AlertActivity extends AppCompatActivity implements NumberPicker.OnV
         btn_volver = findViewById(R.id.btn_volver);
 
 
+        final int[] cont = {AdapterAviso.avisoList.size()};
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -93,16 +96,22 @@ public class AlertActivity extends AppCompatActivity implements NumberPicker.OnV
                         Toast.makeText(AlertActivity.this, "Ingrese hora de fin válida.", Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    cont ++;
+                    cont[0]++;
                     Toast.makeText(AlertActivity.this, "Entró.", Toast.LENGTH_SHORT).show();
                     final DatabaseReference A = database.getReference("Users").child(user.getUid()).child("Avisos");
                     A.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            A.child("Aviso"+cont).setValue('{'+"hora :"+n_inicio.getValue()+"hrs"+","
-                                    +"mensaje inicio :"+msje_inicio.getText()+","
-                                    +"Hora Fin :"+n_fin.getValue()+"hrs"+","
-                                    +"Mensaje fin :"+msje_fin.getText()+'}');
+                            String ni= String.valueOf(n_inicio.getValue());
+                            String nf= String.valueOf(n_fin.getValue());
+
+                            Avisos aviso = null;
+                            aviso = new Avisos(ni,
+                                    msje_inicio.getText().toString(),
+                                    nf,
+                                    msje_fin.getText().toString());
+
+                            A.child("Aviso "+ cont[0]).setValue(aviso);
                         }
 
                         @Override
