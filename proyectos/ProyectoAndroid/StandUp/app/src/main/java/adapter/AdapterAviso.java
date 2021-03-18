@@ -33,6 +33,7 @@ public class AdapterAviso extends RecyclerView.Adapter<AdapterAviso.viewHolderAv
     public void onBindViewHolder(@NonNull viewHolderAvisos holder, int position) {
         Avisos av = avisoList.get(position);
 
+        holder.txtTitulo.setText("Titulo: " + av.getTitulo());
         holder.txtHoraIn.setText("Hora inicio: " + av.getHora()+"hrs");
         holder.txtmsjeinicio.setText("Mensaje Inicio: " + av.getMensaje());
         holder.txtHoraFin.setText("Hora Fin: " + av.getHorafin()+"hrs");
@@ -47,11 +48,12 @@ public class AdapterAviso extends RecyclerView.Adapter<AdapterAviso.viewHolderAv
     }
 
     public class viewHolderAvisos extends RecyclerView.ViewHolder {
-        TextView txtHoraIn, txtmsjeinicio, txtHoraFin, txtmsjefin;
+        TextView txtHoraIn, txtmsjeinicio, txtHoraFin, txtmsjefin, txtTitulo;
 
         public viewHolderAvisos(@NonNull View itemView) {
             super(itemView);
 
+            txtTitulo = itemView.findViewById(R.id.Aviso);
             txtHoraIn = itemView.findViewById(R.id.txtHoraIn);
             txtmsjeinicio = itemView.findViewById(R.id.txtmsjeinicio);
             txtHoraFin = itemView.findViewById(R.id.txtHoraFin);

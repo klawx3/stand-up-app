@@ -34,6 +34,7 @@ import java.util.ArrayList;
 
 import adapter.AdapterAviso;
 import pojos.Avisos;
+import pojos.Data;
 import pojos.Users;
 
 public class HomeActivity extends AppCompatActivity {
@@ -57,12 +58,15 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        Data d = new Data();
+
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.txt_actionbar);
 
         cargaAlertas();
+        buscarAlertas();
 
-        userdatabase();
+        d.userdatabase();
 
 
     } // ------
@@ -88,9 +92,12 @@ public class HomeActivity extends AppCompatActivity {
     private void buscar(String s) {
         ArrayList<Avisos> alertList = new ArrayList<>();
         for (Avisos obj: list){
-
+            if(obj.getTitulo().toLowerCase().contains(s.toLowerCase())){
+                alertList.add(obj);
+            }
         }
-
+        AdapterAviso adapterAviso = new AdapterAviso(alertList);
+        rv.setAdapter(adapterAviso);
 
     }
     private void cargaAlertas(){
@@ -123,27 +130,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
-    private void userdatabase() {
-        ref_user.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (!snapshot.exists()){
-                    Users users= new Users(
-                            user.getUid(),
-                            user.getDisplayName(),
-                            user.getEmail());
-                    ref_user.setValue(users);
 
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

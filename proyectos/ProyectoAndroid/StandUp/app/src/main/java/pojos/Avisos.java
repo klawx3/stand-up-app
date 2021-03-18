@@ -13,11 +13,12 @@ public class Avisos {
 
     }
 
-    public Avisos(String titulo ,String hora, String mensaje, String horafin, String mensajefin) {
-        this.mensaje = mensaje;
-        this.mensajefin = mensajefin;
+    public Avisos(String titulo, String hora, String mensaje, String horafin, String mensajefin) {
+        this.titulo = titulo;
         this.hora = hora;
+        this.mensaje = mensaje;
         this.horafin = horafin;
+        this.mensajefin = mensajefin;
     }
 
     public String getTitulo() {

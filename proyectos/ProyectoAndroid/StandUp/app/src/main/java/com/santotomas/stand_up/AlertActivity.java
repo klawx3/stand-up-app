@@ -42,9 +42,9 @@ public class AlertActivity extends AppCompatActivity implements NumberPicker.OnV
     TextView txt_user, txt_mail,txt_horarios,txt_msje_inicio,txt_mensaje_fin;
     Button btn_volver,btn_confirmar;
     NumberPicker n_inicio, n_fin;
-    EditText msje_inicio,msje_fin;
+    EditText msje_inicio,msje_fin,txtAviso;
 
-    @SuppressLint("WrongConstant")
+    @SuppressLint({"WrongConstant", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +59,7 @@ public class AlertActivity extends AppCompatActivity implements NumberPicker.OnV
         txt_horarios = findViewById(R.id.txt_verhorarios);
         txt_msje_inicio = findViewById(R.id.mostrar_result_incio);
         txt_mensaje_fin = findViewById(R.id.mostrar_result_fin);
+        txtAviso = findViewById(R.id.txtTitulo);
 
         msje_inicio = findViewById(R.id.txt_msje_inicio);
         msje_fin = findViewById(R.id.txt_msje_fin);
@@ -98,7 +99,7 @@ public class AlertActivity extends AppCompatActivity implements NumberPicker.OnV
                 }else{
                     cont[0]++;
                     Toast.makeText(AlertActivity.this, "Entró.", Toast.LENGTH_SHORT).show();
-                    final DatabaseReference A = database.getReference("Users").child(user.getUid()).child("Avisos");
+                    DatabaseReference A = database.getReference("Users").child(user.getUid()).child("Avisos");
                     A.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -106,7 +107,7 @@ public class AlertActivity extends AppCompatActivity implements NumberPicker.OnV
                             String nf= String.valueOf(n_fin.getValue());
 
                             Avisos aviso = null;
-                            aviso = new Avisos(ni,
+                            aviso = new Avisos(txtAviso.getText().toString(),ni,
                                     msje_inicio.getText().toString(),
                                     nf,
                                     msje_fin.getText().toString());
