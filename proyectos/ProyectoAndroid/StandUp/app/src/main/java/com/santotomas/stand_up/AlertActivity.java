@@ -36,6 +36,7 @@ import org.w3c.dom.Text;
 
 import adapter.AdapterAviso;
 import pojos.Avisos;
+import pojos.Data;
 
 public class AlertActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
      int cont = 0;
@@ -66,7 +67,11 @@ public class AlertActivity extends AppCompatActivity implements NumberPicker.OnV
 
         btn_volver = findViewById(R.id.btn_volver);
 
+        String ni= String.valueOf(n_inicio.getValue());
+        String nf= String.valueOf(n_fin.getValue());
 
+
+        Data data = new Data();
         final int[] cont = {AdapterAviso.avisoList.size()};
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -97,22 +102,15 @@ public class AlertActivity extends AppCompatActivity implements NumberPicker.OnV
                         Toast.makeText(AlertActivity.this, "Ingrese hora de fin válida.", Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    cont[0]++;
+
                     Toast.makeText(AlertActivity.this, "Entró.", Toast.LENGTH_SHORT).show();
                     DatabaseReference A = database.getReference("Users").child(user.getUid()).child("Avisos");
                     A.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            String ni= String.valueOf(n_inicio.getValue());
-                            String nf= String.valueOf(n_fin.getValue());
 
-                            Avisos aviso = null;
-                            aviso = new Avisos(txtAviso.getText().toString(),ni,
-                                    msje_inicio.getText().toString(),
-                                    nf,
-                                    msje_fin.getText().toString());
+                            data.insertAlertas(ni,nf,txtAviso.getText().toString(),msje_inicio.getText().toString(),msje_fin.getText().toString());
 
-                            A.child("Aviso "+ cont[0]).setValue(aviso);
                         }
 
                         @Override
@@ -124,7 +122,6 @@ public class AlertActivity extends AppCompatActivity implements NumberPicker.OnV
             }
         });
     } // ------
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

@@ -66,7 +66,7 @@ public class HomeActivity extends AppCompatActivity {
         cargaAlertas();
         buscarAlertas();
 
-        d.userdatabase();
+        d. userDataBase();
 
 
     } // ------
