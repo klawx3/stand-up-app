@@ -67,12 +67,8 @@ public class AlertActivity extends AppCompatActivity implements NumberPicker.OnV
 
         btn_volver = findViewById(R.id.btn_volver);
 
-        String ni= String.valueOf(n_inicio.getValue());
-        String nf= String.valueOf(n_fin.getValue());
-
 
         Data data = new Data();
-        final int[] cont = {AdapterAviso.avisoList.size()};
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -109,7 +105,7 @@ public class AlertActivity extends AppCompatActivity implements NumberPicker.OnV
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            data.insertAlertas(ni,nf,txtAviso.getText().toString(),msje_inicio.getText().toString(),msje_fin.getText().toString());
+                            data.insertAlertas(n_inicio.getValue(),n_fin.getValue(),txtAviso.getText().toString(),msje_inicio.getText().toString(),msje_fin.getText().toString());
 
                         }
 
