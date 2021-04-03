@@ -2,10 +2,17 @@ package com.santotomas.stand_up;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -44,6 +51,12 @@ public class AlertActivity extends AppCompatActivity implements NumberPicker.OnV
     Button btn_volver,btn_confirmar;
     NumberPicker n_inicio, n_fin;
     EditText msje_inicio,msje_fin,txtAviso;
+
+
+    private PendingIntent pendingIntent;
+    private final static String CHANNEL_ID = "NOTIFICACION";
+    private final static int NOTIFICACION_ID = 0;
+
 
     @SuppressLint({"WrongConstant", "WrongViewCast"})
     @Override
@@ -107,6 +120,9 @@ public class AlertActivity extends AppCompatActivity implements NumberPicker.OnV
 
                             data.insertAlertas(n_inicio.getValue(),n_fin.getValue(),txtAviso.getText().toString(),msje_inicio.getText().toString(),msje_fin.getText().toString());
 
+                            createNotificationChannel();
+                            createNotification();
+
                         }
 
                         @Override
@@ -166,5 +182,28 @@ public class AlertActivity extends AppCompatActivity implements NumberPicker.OnV
         }else {
             newVal-=1;
         }
+    }
+
+
+    private void createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence name = "Noticacion";
+            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, name, NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+    }
+
+    private void createNotification(){
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID);
+        builder.setSmallIcon(R.drawable.ic_baseline_airline_seat_flat_angled_24);
+        builder.setContentTitle("Título de notificación");
+        builder.setContentText("Texto de notificación");
+        builder.setPriority(NotificationCompat.PRIORITY_MAX);
+        builder.setVibrate(new long[]{1000,1000,1000,1000,1000});
+        builder.setDefaults(Notification.DEFAULT_SOUND);
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getApplicationContext());
+        notificationManagerCompat.notify(NOTIFICACION_ID, builder.build());
     }
 }

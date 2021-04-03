@@ -64,6 +64,8 @@ public class Data {
 
                 Avisos aviso = new Avisos(titulo,nii,mi,nff,mf);
                 A.child("Aviso " + value).setValue(aviso);
+
+
             }
 
             @Override
