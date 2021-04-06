@@ -11,6 +11,7 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -67,7 +68,8 @@ public class HomeActivity extends AppCompatActivity {
         buscarAlertas();
 
         d. userDataBase();
-
+        Hilo h= new Hilo();
+        h.start();
 
     } // ------
 
@@ -173,7 +175,13 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    private class Hilo extends Thread{
 
+        @Override
+        public void run(){
+        //lo que tiene que hacer
+        }
+    }
 
 
 }
