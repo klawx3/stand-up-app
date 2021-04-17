@@ -46,7 +46,7 @@ public class Data {
         });
     }
 
-    public void insertAlertas(int ni, int nf, String titulo, String mi, String mf){
+    public void insertAlertas(CharSequence ni, CharSequence nf, String titulo, String mi, String mf){
         DatabaseReference A = database.getReference("Users").child(user.getUid()).child("Avisos");
         basicQueryValueListener();
 

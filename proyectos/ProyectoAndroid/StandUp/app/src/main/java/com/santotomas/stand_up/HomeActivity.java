@@ -68,8 +68,6 @@ public class HomeActivity extends AppCompatActivity {
         buscarAlertas();
 
         d. userDataBase();
-        Hilo h= new Hilo();
-        h.start();
 
     } // ------
 
@@ -175,13 +173,6 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    private class Hilo extends Thread{
-
-        @Override
-        public void run(){
-        //lo que tiene que hacer
-        }
-    }
 
 
 }
