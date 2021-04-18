@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -31,6 +33,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.UUID;
 
@@ -38,10 +41,10 @@ import scripts.Data;
 
 public class AlertActivity extends AppCompatActivity {
 
-    TextView txt_user, txt_mail,txt_horarios,txt_msje_inicio,txt_mensaje_fin,n_inicio, n_fin;
-    Button btn_volver,btn_confirmar,btn_seleccionHoraIN,btn_seleccionHoraFin;
+    TextView txt_Dia,n_inicio, n_fin;
+    Button btn_volver,btn_confirmar,btn_seleccionHoraIN,btn_seleccionHoraFin,btn_selecDia;
     EditText msje_inicio,msje_fin,txtAviso;
-    int hora,minuto;
+    int hora,minuto,dia,mes,anio;
 
     private PendingIntent pendingIntent;
     private final static String CHANNEL_ID = "NOTIFICACION";
@@ -54,44 +57,82 @@ public class AlertActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alert);
 
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.txt_actionbar);
-
-        n_inicio = findViewById(R.id.tv_horain);
-        n_fin = findViewById(R.id.tv_horafin);
-        btn_confirmar = findViewById(R.id.btn_confirmar);
-        txtAviso = findViewById(R.id.txtTitulo);
-
-        btn_seleccionHoraIN =  findViewById(R.id.btn_selechorain);
-        btn_seleccionHoraFin =  findViewById(R.id.btn_selechorafin);
-
-        msje_inicio = findViewById(R.id.txt_msje_inicio);
-        msje_fin = findViewById(R.id.txt_msje_fin);
-
-        btn_volver = findViewById(R.id.btn_volver);
-
-        Calendar actual = Calendar.getInstance();//configurar la fecha y la hora actual del dispositivo (los picker)
-        Calendar calendar = Calendar.getInstance();//selecionar la fecha
-        Calendar calendar_fn = Calendar.getInstance();//
 
         Data data = new Data();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.txt_actionbar);
+
+        n_inicio = findViewById(R.id.tv_horain);
+        n_fin = findViewById(R.id.tv_horafin);
+        txt_Dia = findViewById(R.id.tv_dia);
+
+
+        txtAviso = findViewById(R.id.txtTitulo);
+        msje_inicio = findViewById(R.id.txt_msje_inicio);
+        msje_fin = findViewById(R.id.txt_msje_fin);
+
+
+        btn_selecDia = findViewById(R.id.btn_selecDia);
+        btn_confirmar = findViewById(R.id.btn_confirmar);
+        btn_seleccionHoraIN =  findViewById(R.id.btn_selechorain);
+        btn_seleccionHoraFin =  findViewById(R.id.btn_selechorafin);
+        btn_volver = findViewById(R.id.btn_volver);
+
+
+
+
+        Calendar actual = Calendar.getInstance();//configurar la fecha y la hora actual del dispositivo (los picker)
+        Calendar calendar = Calendar.getInstance();//selecionar la fecha
+        Calendar calendar_fn = Calendar.getInstance();//
+        Calendar calendar_dia = Calendar.getInstance();//
+
+
+        btn_selecDia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                anio = actual.get(Calendar.YEAR);
+                mes = actual.get(Calendar.MONTH);
+                dia = actual.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(v.getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        calendar_dia.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                        calendar_dia.set(Calendar.MONTH,month);
+                        calendar_dia.set(Calendar.YEAR,year);
+
+
+                        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                        String strDate = format.format(calendar_dia.getTime());
+                        txt_Dia.setText(strDate);
+
+
+                    }
+                },anio,mes,dia);
+                datePickerDialog.show();
+
+
+            }
+        });
+
+
         btn_seleccionHoraFin.setEnabled(false);
 
         btn_seleccionHoraIN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hora = actual.get(calendar.HOUR_OF_DAY);
-                minuto = actual.get(calendar.MINUTE);
+                hora = actual.get(Calendar.HOUR_OF_DAY);
+                minuto = actual.get(Calendar.MINUTE);
 
                 TimePickerDialog timePickerDialog = new TimePickerDialog(v.getContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int h, int m) {
-                        calendar.set(calendar.HOUR_OF_DAY,h);
-                        calendar.set(calendar.MINUTE,m);
+                        calendar.set(Calendar.HOUR_OF_DAY,h);
+                        calendar.set(Calendar.MINUTE,m);
 
                         n_inicio.setText(String.format("%02d:%02d",h,m));
                     }
@@ -110,8 +151,8 @@ public class AlertActivity extends AppCompatActivity {
                 TimePickerDialog timePickerDialog1 = new TimePickerDialog(v.getContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int ho, int mi) {
-                        calendar_fn.set(calendar.HOUR_OF_DAY,ho);
-                        calendar_fn.set(calendar.MINUTE,mi);
+                        calendar_fn.set(Calendar.HOUR_OF_DAY,ho);
+                        calendar_fn.set(Calendar.MINUTE,mi);
 
                         n_fin.setText(String.format("%02d:%02d",ho,mi));
                     }
@@ -161,7 +202,7 @@ public class AlertActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            data.insertAlertas(n_inicio.getText(),n_fin.getText(),txtAviso.getText().toString(),msje_inicio.getText().toString(),msje_fin.getText().toString());
+                            data.insertAlertas(n_inicio.getText(),n_fin.getText(),txtAviso.getText().toString(),msje_inicio.getText().toString(),msje_fin.getText().toString(),txt_Dia.getText().toString());
                             goHome();
                             //createNotificationChannel();
                             //createNotification();

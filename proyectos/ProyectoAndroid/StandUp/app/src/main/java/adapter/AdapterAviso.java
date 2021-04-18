@@ -38,6 +38,7 @@ public class AdapterAviso extends RecyclerView.Adapter<AdapterAviso.viewHolderAv
         holder.txtmsjeinicio.setText("Mensaje Inicio: " + av.getMensaje());
         holder.txtHoraFin.setText("Hora Fin: " + av.getHorafin()+"hrs");
         holder.txtmsjefin.setText("Mensaje Fin: " + av.getMensajefin());
+        holder.txtDia.setText("Día: "+av.getDia());
 
 
     }
@@ -48,7 +49,7 @@ public class AdapterAviso extends RecyclerView.Adapter<AdapterAviso.viewHolderAv
     }
 
     public class viewHolderAvisos extends RecyclerView.ViewHolder {
-        TextView txtHoraIn, txtmsjeinicio, txtHoraFin, txtmsjefin, txtTitulo;
+        TextView txtHoraIn, txtmsjeinicio, txtHoraFin, txtmsjefin, txtTitulo,txtDia;
 
         public viewHolderAvisos(@NonNull View itemView) {
             super(itemView);
@@ -58,6 +59,7 @@ public class AdapterAviso extends RecyclerView.Adapter<AdapterAviso.viewHolderAv
             txtmsjeinicio = itemView.findViewById(R.id.txtmsjeinicio);
             txtHoraFin = itemView.findViewById(R.id.txtHoraFin);
             txtmsjefin = itemView.findViewById(R.id.txtmsjefin);
+            txtDia = itemView.findViewById(R.id.tv_dia);
         }
     }
 }

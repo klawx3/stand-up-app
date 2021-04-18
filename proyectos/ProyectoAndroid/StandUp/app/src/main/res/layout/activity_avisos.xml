@@ -27,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Titulo"/>
+
             <TextView
                 android:id="@+id/txtHoraIn"
                 android:textColor="#000"
@@ -55,6 +56,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Mensaje Fin :"/>
+            <TextView
+                android:id="@+id/tv_dia"
+                android:textColor="#000"
+                android:textSize="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Día:"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>
