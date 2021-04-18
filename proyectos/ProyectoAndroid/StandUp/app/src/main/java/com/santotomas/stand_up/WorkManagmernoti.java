@@ -32,14 +32,13 @@ public class WorkManagmernoti extends Worker {
         instance.enqueue(n);
     }
 
-
     @NonNull
     @Override
     public Result doWork() {
 
-        String titulo = getInputData().getString("Titulo");
-        String detalle = getInputData().getString("Mensaje");
-        int id = (int) getInputData().getLong("idnot",0);
+        String titulo = getInputData().getString("titulo");
+        String detalle = getInputData().getString("detalle");
+        int id = (int) getInputData().getLong("id_noti",0);
 
         noti(titulo,detalle);
 
@@ -61,7 +60,6 @@ public class WorkManagmernoti extends Worker {
             assert nm != null;
 
             nm.createNotificationChannel(notificationChannel);
-
         }
 
         Intent intent = new Intent(getApplicationContext(),MainActivity.class);

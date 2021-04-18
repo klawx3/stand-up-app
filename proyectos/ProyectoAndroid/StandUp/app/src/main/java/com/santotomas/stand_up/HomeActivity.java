@@ -1,7 +1,6 @@
 package com.santotomas.stand_up;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,12 +10,9 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
@@ -24,7 +20,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,9 +29,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import adapter.AdapterAviso;
-import pojos.Avisos;
-import pojos.Data;
-import pojos.Users;
+import scripts.Avisos;
+import scripts.Data;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -69,7 +63,7 @@ public class HomeActivity extends AppCompatActivity {
 
         d. userDataBase();
 
-    } // ------
+    } // ----------------------------
 
     private void buscarAlertas(){
         serchv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -83,8 +77,6 @@ public class HomeActivity extends AppCompatActivity {
                 buscar(s);
                 return true;
             }
-
-
         });
 
 

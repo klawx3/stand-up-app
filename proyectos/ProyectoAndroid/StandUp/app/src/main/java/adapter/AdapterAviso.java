@@ -12,7 +12,7 @@ import com.santotomas.stand_up.R;
 
 import java.util.List;
 
-import pojos.Avisos;
+import scripts.Avisos;
 
 public class AdapterAviso extends RecyclerView.Adapter<AdapterAviso.viewHolderAvisos> {
     public static List<Avisos> avisoList;

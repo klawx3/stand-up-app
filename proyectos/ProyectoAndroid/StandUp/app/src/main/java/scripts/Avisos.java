@@ -1,4 +1,4 @@
-package pojos;
+package scripts;
 
 public class Avisos {
     private String titulo;

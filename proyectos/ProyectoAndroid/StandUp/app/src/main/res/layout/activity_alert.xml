@@ -91,8 +91,8 @@
         android:textColor="#000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -109,24 +109,9 @@
         android:layout_height="wrap_content"
         android:text="Crear Aviso."/>
 
-    <TextView
-        android:id="@+id/txt_verhorarios"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Horario final"
-        android:layout_marginVertical="10sp"/>
 
-    <TextView
-        android:id="@+id/mostrar_result_incio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Aquí se mostrará el mensaje de inicio"/>
 
-    <TextView
-        android:id="@+id/mostrar_result_fin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Aquí se mostrará el mensaje de fin"/>
+
 
     <Space
         android:layout_width="wrap_content"
