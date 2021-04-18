@@ -101,13 +101,13 @@ public class AlertActivity extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(v.getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        calendar_dia.set(Calendar.DAY_OF_MONTH,dayOfMonth);
-                        calendar_dia.set(Calendar.MONTH,month);
-                        calendar_dia.set(Calendar.YEAR,year);
+                        calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                        calendar.set(Calendar.MONTH,month);
+                        calendar.set(Calendar.YEAR,year);
 
 
                         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                        String strDate = format.format(calendar_dia.getTime());
+                        String strDate = format.format(calendar.getTime());
                         txt_Dia.setText(strDate);
 
 
