@@ -50,13 +50,11 @@ public class AlertActivity extends AppCompatActivity {
     private final static String CHANNEL_ID = "NOTIFICACION";
     private final static int NOTIFICACION_ID = 0;
 
-
     @SuppressLint({"WrongConstant", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alert);
-
 
         Data data = new Data();
 
@@ -70,11 +68,9 @@ public class AlertActivity extends AppCompatActivity {
         n_fin = findViewById(R.id.tv_horafin);
         txt_Dia = findViewById(R.id.tv_dia);
 
-
         txtAviso = findViewById(R.id.txtTitulo);
         msje_inicio = findViewById(R.id.txt_msje_inicio);
         msje_fin = findViewById(R.id.txt_msje_fin);
-
 
         btn_selecDia = findViewById(R.id.btn_selecDia);
         btn_confirmar = findViewById(R.id.btn_confirmar);
@@ -83,12 +79,9 @@ public class AlertActivity extends AppCompatActivity {
         btn_volver = findViewById(R.id.btn_volver);
 
 
-
-
         Calendar actual = Calendar.getInstance();//configurar la fecha y la hora actual del dispositivo (los picker)
         Calendar calendar = Calendar.getInstance();//selecionar la fecha
         Calendar calendar_fn = Calendar.getInstance();//
-        Calendar calendar_dia = Calendar.getInstance();//
 
 
         btn_selecDia.setOnClickListener(new View.OnClickListener() {
@@ -105,20 +98,18 @@ public class AlertActivity extends AppCompatActivity {
                         calendar.set(Calendar.MONTH,month);
                         calendar.set(Calendar.YEAR,year);
 
+                        calendar_fn.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                        calendar_fn.set(Calendar.MONTH,month);
+                        calendar_fn.set(Calendar.YEAR,year);
 
                         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
                         String strDate = format.format(calendar.getTime());
                         txt_Dia.setText(strDate);
-
-
                     }
                 },anio,mes,dia);
                 datePickerDialog.show();
-
-
             }
         });
-
 
         btn_seleccionHoraFin.setEnabled(false);
 
@@ -153,6 +144,7 @@ public class AlertActivity extends AppCompatActivity {
                     public void onTimeSet(TimePicker view, int ho, int mi) {
                         calendar_fn.set(Calendar.HOUR_OF_DAY,ho);
                         calendar_fn.set(Calendar.MINUTE,mi);
+                        
 
                         n_fin.setText(String.format("%02d:%02d",ho,mi));
                     }
@@ -189,21 +181,26 @@ public class AlertActivity extends AppCompatActivity {
                     long alertf = (calendar_fn.getTimeInMillis() - System.currentTimeMillis());
 
 
-
-                    androidx.work.Data data1 = GuardarData(txtAviso.getText().toString(),msje_inicio.getText().toString(), random);
-                    androidx.work.Data data2 = GuardarData(txtAviso.getText().toString(),msje_fin.getText().toString(), random);
-
-                    WorkManagmernoti.GuardarNotificacion((int) alertin,data1,tag);
-                    WorkManagmernoti.GuardarNotificacion((int) alertf,data2,tag);
-
-                    Toast.makeText(AlertActivity.this, "Entró.", Toast.LENGTH_SHORT).show();
                     DatabaseReference A = database.getReference("Users").child(user.getUid()).child("Avisos");
                     A.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            data.insertAlertas(n_inicio.getText(),n_fin.getText(),txtAviso.getText().toString(),msje_inicio.getText().toString(),msje_fin.getText().toString(),txt_Dia.getText().toString());
-                            goHome();
+                            if(data.compararHoras(n_inicio.getText().toString(),n_fin.getText().toString())){
+
+                                androidx.work.Data data1 = GuardarData(txtAviso.getText().toString(),msje_inicio.getText().toString(), random);
+                                androidx.work.Data data2 = GuardarData(txtAviso.getText().toString(),msje_fin.getText().toString(), random);
+
+                                WorkManagmernoti.GuardarNotificacion((int) alertin,data1,tag);
+                                WorkManagmernoti.GuardarNotificacion((int) alertf,data2,tag);
+
+                                Toast.makeText(AlertActivity.this, "Entró.", Toast.LENGTH_SHORT).show();
+
+                                data.insertAlertas(n_inicio.getText(),n_fin.getText(),txtAviso.getText().toString(),msje_inicio.getText().toString(),msje_fin.getText().toString(),txt_Dia.getText().toString());
+                                goHome();
+                            }else
+                                Toast.makeText(AlertActivity.this, "Asegurese que la hora final es más tarde que la inicial.", Toast.LENGTH_SHORT).show();
+
                             //createNotificationChannel();
                             //createNotification();
 

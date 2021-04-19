@@ -57,6 +57,12 @@ public class Data {
                     System.out.println(value);
                 }
 
+                //if para comenzar los avisos en 10, esto, con el fin
+                //de no generar problemas al crear más de 10 avisos
+                if(value == 0){
+                    value = 9;
+                }
+
                 value++;
                 String nii= String.valueOf(ni);
                 String nff= String.valueOf(nf);
@@ -93,6 +99,30 @@ public class Data {
 
             }
         });
+    }
+
+    public boolean compararHoras(String horario_in, String horario_fin){
+        String[] hora_in = horario_in.split(":");
+        int hora1 = Integer.parseInt(hora_in[0]);
+        int min1 = Integer.parseInt(hora_in[1]);
+
+        String[] hora_fin = horario_fin.split(":");
+        int hora2 = Integer.parseInt(hora_fin[0]);
+        int min2 = Integer.parseInt(hora_fin[1]);
+
+        if(hora1 > hora2){
+            return false;
+        }else
+            if(hora1 == hora2){
+                if(min1 >= min2){
+                    return false;
+                }else
+                    return true;
+            }else
+                if(hora1 < hora2){
+                    return true;
+                }
+                return true;
     }
 
 
