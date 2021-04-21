@@ -194,12 +194,12 @@ public class AlertActivity extends AppCompatActivity {
                                 WorkManagmernoti.GuardarNotificacion((int) alertin,data1,tag);
                                 WorkManagmernoti.GuardarNotificacion((int) alertf,data2,tag);
 
-                                Toast.makeText(AlertActivity.this, "Entró.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AlertActivity.this, "Aviso guardado.", Toast.LENGTH_SHORT).show();
 
                                 data.insertAlertas(n_inicio.getText(),n_fin.getText(),txtAviso.getText().toString(),msje_inicio.getText().toString(),msje_fin.getText().toString(),txt_Dia.getText().toString());
                                 goHome();
                             }else
-                                Toast.makeText(AlertActivity.this, "Asegurese que la hora final es más tarde que la inicial.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AlertActivity.this, "Asegurese que la hora final es posterior a la inicial.", Toast.LENGTH_SHORT).show();
 
                             //createNotificationChannel();
                             //createNotification();
