@@ -125,6 +125,37 @@ public class Data {
                 return true;
     }
 
+    public boolean compararFechas(String fecha_actual, String fecha_aviso,String hora_act, String hora_aviso){
+        String[] f_actual_split = fecha_actual.split("/");
+        int dia_act = Integer.parseInt(f_actual_split[0]);
+        int mes_act = Integer.parseInt(f_actual_split[1]);
+        int anio_act = Integer.parseInt(f_actual_split[2]);
+
+        String[] f_aviso_split = fecha_aviso.split("/");
+        int dia_av = Integer.parseInt(f_aviso_split[0]);
+        int mes_av = Integer.parseInt(f_aviso_split[1]);
+        int anio_av = Integer.parseInt(f_aviso_split[2]);
+
+        if(anio_av < anio_act){
+            return false;
+        }else{
+            if(mes_av < mes_act){
+                return false;
+            }else{
+                if(dia_av < dia_act){
+                    return false;
+                }else{
+                    if(dia_av == dia_act){
+                        boolean a = compararHoras(hora_act,hora_aviso);
+                        return a;
+                    }else{
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+
 
 
 
