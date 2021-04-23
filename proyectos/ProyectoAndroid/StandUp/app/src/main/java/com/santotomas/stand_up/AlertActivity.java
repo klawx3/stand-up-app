@@ -254,11 +254,11 @@ public class AlertActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    private String GenerateKey(){
+    public static String GenerateKey(){
         return UUID.randomUUID().toString();
     }
 
-    private androidx.work.Data GuardarData(String titulo, String detalle, int not){
+    public static androidx.work.Data GuardarData(String titulo, String detalle, int not){
 
         return new androidx.work.Data.Builder()
                 .putString("titulo", titulo)

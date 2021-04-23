@@ -1,21 +1,30 @@
 package adapter;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.santotomas.stand_up.R;
 
+import java.sql.SQLOutput;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import scripts.Avisos;
+import scripts.Data;
 
 public class AdapterAviso extends RecyclerView.Adapter<AdapterAviso.viewHolderAvisos> {
     public static List<Avisos> avisoList;
+
+    Data d = new Data();
+    Calendar c = Calendar.getInstance();
 
     public AdapterAviso(List<Avisos> aviso) {
         this.avisoList = aviso;
@@ -33,6 +42,15 @@ public class AdapterAviso extends RecyclerView.Adapter<AdapterAviso.viewHolderAv
     public void onBindViewHolder(@NonNull viewHolderAvisos holder, int position) {
         Avisos av = avisoList.get(position);
 
+        //SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        //String fecha_act = format.format(c.getTime());
+
+        //int hora_act = c.get(Calendar.HOUR_OF_DAY);
+        //int min_act = c.get(Calendar.MINUTE);
+
+        //String hora_compl_act = String.format("%02d:%02d",hora_act,min_act);
+
+
         holder.txtTitulo.setText("Titulo: " + av.getTitulo());
         holder.txtHoraIn.setText("Hora inicio: " + av.getHora()+"hrs");
         holder.txtmsjeinicio.setText("Mensaje Inicio: " + av.getMensaje());
@@ -40,7 +58,9 @@ public class AdapterAviso extends RecyclerView.Adapter<AdapterAviso.viewHolderAv
         holder.txtmsjefin.setText("Mensaje Fin: " + av.getMensajefin());
         holder.txtDia.setText("Día: "+av.getDia());
 
-
+        //if(d.compararFechas(fecha_act,av.getDia(),hora_compl_act,av.getHora())){
+        //    System.out.println("Fecha: "+av.getDia()+" ///// Hora: "+av.getHora());
+        //}
     }
 
     @Override
