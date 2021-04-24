@@ -49,6 +49,7 @@ public class AlertActivity extends AppCompatActivity {
     private PendingIntent pendingIntent;
     private final static String CHANNEL_ID = "NOTIFICACION";
     private final static int NOTIFICACION_ID = 0;
+    String fec_act;
 
     @SuppressLint({"WrongConstant", "WrongViewCast"})
     @Override
@@ -105,6 +106,8 @@ public class AlertActivity extends AppCompatActivity {
                         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
                         String strDate = format.format(calendar.getTime());
                         txt_Dia.setText(strDate);
+
+                        fec_act = format.format(actual.getTime());
                     }
                 },anio,mes,dia);
                 datePickerDialog.show();
@@ -186,7 +189,7 @@ public class AlertActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            if(data.compararHoras(n_inicio.getText().toString(),n_fin.getText().toString())){
+                            if(data.compararHoras(n_inicio.getText().toString(),n_fin.getText().toString()) && data.compararFechas(fec_act,txt_Dia.getText().toString())){
 
                                 androidx.work.Data data1 = GuardarData(txtAviso.getText().toString(),msje_inicio.getText().toString(), random);
                                 androidx.work.Data data2 = GuardarData(txtAviso.getText().toString(),msje_fin.getText().toString(), random);
@@ -199,7 +202,7 @@ public class AlertActivity extends AppCompatActivity {
                                 data.insertAlertas(n_inicio.getText(),n_fin.getText(),txtAviso.getText().toString(),msje_inicio.getText().toString(),msje_fin.getText().toString(),txt_Dia.getText().toString());
                                 goHome();
                             }else
-                                Toast.makeText(AlertActivity.this, "Asegurese que la hora final es posterior a la inicial.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AlertActivity.this, "Asegurese que la hora final es posterior a la inicial y la fecha posterior a la actual", Toast.LENGTH_SHORT).show();
 
                             //createNotificationChannel();
                             //createNotification();

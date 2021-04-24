@@ -21,12 +21,13 @@ public class Data {
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref_user = database.getReference("Users").child(user.getUid());
-    DatabaseReference avis = database.getReference("Users").child(user.getUid()).child("Avisos");
+    //DatabaseReference ref_user = database.getReference("Users").child(user.getUid());
+    //DatabaseReference avis = database.getReference("Users").child(user.getUid()).child("Avisos");
 
     List<Integer> list_lastaviso = new ArrayList<>();
 
     public void basicQueryValueListener() {
+        DatabaseReference avis = database.getReference("Users").child(user.getUid()).child("Avisos");
         Query myTopPostsQuery = avis.limitToLast(1);
         myTopPostsQuery.addValueEventListener(new ValueEventListener() {
             @Override
@@ -54,7 +55,6 @@ public class Data {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (int val : list_lastaviso){
                     value = val;
-                    System.out.println(value);
                 }
 
                 //if para comenzar los avisos en 10, esto, con el fin
@@ -69,8 +69,6 @@ public class Data {
 
                 Avisos aviso = new Avisos(titulo,nii,mi,nff,mf,dia);
                 A.child("Aviso " + value).setValue(aviso);
-
-
             }
 
             @Override
@@ -78,10 +76,10 @@ public class Data {
                 //TO DO
             }
         });
-
     }
 
     public void userDataBase(){
+        DatabaseReference ref_user = database.getReference("Users").child(user.getUid());
         ref_user.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -96,7 +94,7 @@ public class Data {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                //TO DO
             }
         });
     }
@@ -125,7 +123,7 @@ public class Data {
                 return true;
     }
 
-    public boolean compararFechas(String fecha_actual, String fecha_aviso,String hora_act, String hora_aviso){
+    public boolean compararFechas(String fecha_actual, String fecha_aviso){
         String[] f_actual_split = fecha_actual.split("/");
         int dia_act = Integer.parseInt(f_actual_split[0]);
         int mes_act = Integer.parseInt(f_actual_split[1]);
@@ -145,20 +143,9 @@ public class Data {
                 if(dia_av < dia_act){
                     return false;
                 }else{
-                    if(dia_av == dia_act){
-                        boolean a = compararHoras(hora_act,hora_aviso);
-                        return a;
-                    }else{
-                        return true;
-                    }
+                    return true;
                 }
             }
         }
     }
-
-
-
-
-
-
 }

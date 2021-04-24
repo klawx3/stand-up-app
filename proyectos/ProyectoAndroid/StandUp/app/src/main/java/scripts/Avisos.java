@@ -8,8 +8,6 @@ public class Avisos {
     private String mensajefin;
     private String dia;
 
-
-
     public Avisos() {
 
     }
@@ -70,4 +68,5 @@ public class Avisos {
     public void setDia(String dia) {
         this.dia = dia;
     }
+
 }
