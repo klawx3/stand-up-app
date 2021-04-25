@@ -121,12 +121,13 @@ public class AlertActivity extends AppCompatActivity {
             public void onClick(View v) {
                 hora = actual.get(Calendar.HOUR_OF_DAY);
                 minuto = actual.get(Calendar.MINUTE);
-
+                int segundero_inicio = 00;
                 TimePickerDialog timePickerDialog = new TimePickerDialog(v.getContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int h, int m) {
                         calendar.set(Calendar.HOUR_OF_DAY,h);
                         calendar.set(Calendar.MINUTE,m);
+                        calendar.set(Calendar.SECOND,segundero_inicio);
 
                         n_inicio.setText(String.format("%02d:%02d",h,m));
                     }
@@ -141,12 +142,14 @@ public class AlertActivity extends AppCompatActivity {
             public void onClick(View v) {
                 hora = actual.get(Calendar.HOUR_OF_DAY);
                 minuto = actual.get(Calendar.MINUTE);
+                int seg = 00;
 
                 TimePickerDialog timePickerDialog1 = new TimePickerDialog(v.getContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int ho, int mi) {
                         calendar_fn.set(Calendar.HOUR_OF_DAY,ho);
                         calendar_fn.set(Calendar.MINUTE,mi);
+                        calendar_fn.set(Calendar.SECOND,seg);
                         
 
                         n_fin.setText(String.format("%02d:%02d",ho,mi));

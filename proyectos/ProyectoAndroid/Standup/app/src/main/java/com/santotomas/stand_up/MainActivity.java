@@ -173,11 +173,15 @@ public class MainActivity extends AppCompatActivity {
                                                 int hora2 = Integer.parseInt(hora_fin[0]);
                                                 int min2 = Integer.parseInt(hora_fin[1]);
 
+                                                int segundos = 00;
+
                                                 calIN.set(Calendar.HOUR_OF_DAY,hora1);
                                                 calIN.set(Calendar.MINUTE,min1);
+                                                calIN.set(Calendar.SECOND,segundos);
 
                                                 calFIN.set(Calendar.HOUR_OF_DAY,hora2);
                                                 calFIN.set(Calendar.MINUTE,min2);
+                                                calFIN.set(Calendar.SECOND,segundos);
 
                                                 long alertin = (calIN.getTimeInMillis() - System.currentTimeMillis());
                                                 long alertf = (calFIN.getTimeInMillis() - System.currentTimeMillis());
