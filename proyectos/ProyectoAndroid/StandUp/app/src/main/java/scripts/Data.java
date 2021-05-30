@@ -20,9 +20,7 @@ public class Data {
     String a;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    //DatabaseReference ref_user = database.getReference("Users").child(user.getUid());
-    //DatabaseReference avis = database.getReference("Users").child(user.getUid()).child("Avisos");
+    FirebaseDatabase database = FirebaseDatabase.getInstance();;
 
     List<Integer> list_lastaviso = new ArrayList<>();
 
