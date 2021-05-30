@@ -207,7 +207,8 @@ public class AlertActivity extends AppCompatActivity {
                             }else
                                 Toast.makeText(AlertActivity.this, "Asegurese que la hora final es posterior a la inicial y la fecha posterior a la actual", Toast.LENGTH_SHORT).show();
 
-
+                            //createNotificationChannel();
+                            //createNotification();
 
                         }
 
@@ -271,4 +272,26 @@ public class AlertActivity extends AppCompatActivity {
                 .putInt("id_noti",not).build();
     }
 
+
+   //private void createNotificationChannel(){
+     //   if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+       //     CharSequence name = "Noticacion";
+         //   NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, name, NotificationManager.IMPORTANCE_DEFAULT);
+           // NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            //notificationManager.createNotificationChannel(notificationChannel);
+        //}
+    //}
+
+    //private void createNotification(){
+      //  NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID);
+        //builder.setSmallIcon(R.drawable.ic_baseline_airline_seat_flat_angled_24);
+        //builder.setContentTitle("Título de notificación");
+        //builder.setContentText("Texto de notificación");
+        //builder.setPriority(NotificationCompat.PRIORITY_MAX);
+        //builder.setVibrate(new long[]{1000,1000,1000,1000,1000});
+        //builder.setDefaults(Notification.DEFAULT_SOUND);
+
+        //NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getApplicationContext());
+        //notificationManagerCompat.notify(NOTIFICACION_ID, builder.build());
+    //}
 }
