@@ -142,37 +142,12 @@
         android:layout_height="wrap_content"
         android:hint="Especifique mensaje de fin"/>
 
-    <Button
-        android:id="@+id/btn_selecDia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@color/colorPrimaryDark"
-        android:padding="10dp"
-        android:text="Seleccionar Día"
-        android:textColor="#fff" />
-
-    <TextView
-        android:id="@+id/tv_dia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:hint="Día Seleccionado"
-        android:textColor="#000"
-        android:textSize="20dp"
-
-        />
-
-
-
 
     <Button
         android:id="@+id/btn_confirmar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Crear Aviso." />
-
 
     <Space
         android:layout_width="wrap_content"
