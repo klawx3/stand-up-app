@@ -63,7 +63,13 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.txt_actionbar);
 
-        cargaAlertas();
+        cargaAlertas("Lunes");
+        cargaAlertas("Martes");
+        cargaAlertas("Miercoles");
+        cargaAlertas("Jueves");
+        cargaAlertas("Viernes");
+        cargaAlertas("Sabado");
+        cargaAlertas("Domingo");
         buscarAlertas();
 
         d.userDataBase();
@@ -97,8 +103,8 @@ public class HomeActivity extends AppCompatActivity {
         rv.setAdapter(adapterAviso);
 
     }
-    private void cargaAlertas(){
-        DatabaseReference ref_user = database.getReference("Users").child(user.getUid()).child("Avisos");
+    private void cargaAlertas(String dia){
+        DatabaseReference ref_user = database.getReference("Users").child(user.getUid()).child("Avisos").child(dia);
         rv = findViewById(R.id.rv);
         serchv = findViewById(R.id.search);
         lm = new LinearLayoutManager(this);

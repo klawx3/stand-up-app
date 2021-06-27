@@ -26,8 +26,8 @@ public class Data {
 
     List<Integer> list_lastaviso = new ArrayList<>();
 
-    public void basicQueryValueListener() {
-        DatabaseReference avis = database.getReference("Users").child(user.getUid()).child("Avisos");
+    public void basicQueryValueListener(String dia) {
+        DatabaseReference avis = database.getReference("Users").child(user.getUid()).child("Avisos").child(dia);
         Query myTopPostsQuery = avis.limitToLast(1);
         myTopPostsQuery.addValueEventListener(new ValueEventListener() {
             @Override
@@ -49,7 +49,7 @@ public class Data {
     public void insertAlertas(CharSequence ni, CharSequence nf, String titulo, String mi, String mf,String dia){
 
         DatabaseReference A = database.getReference("Users").child(user.getUid()).child("Avisos").child(dia);
-        basicQueryValueListener();
+        basicQueryValueListener(dia);
 
         A.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
