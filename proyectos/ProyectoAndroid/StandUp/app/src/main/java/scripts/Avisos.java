@@ -6,19 +6,17 @@ public class Avisos {
     private String mensaje;
     private String horafin;
     private String mensajefin;
-    private String dia;
 
     public Avisos() {
 
     }
 
-    public Avisos(String titulo, String hora, String mensaje, String horafin, String mensajefin, String dia) {
+    public Avisos(String titulo, String hora, String mensaje, String horafin, String mensajefin) {
         this.titulo = titulo;
         this.hora = hora;
         this.mensaje = mensaje;
         this.horafin = horafin;
         this.mensajefin = mensajefin;
-        this.dia = dia;
     }
 
     public String getTitulo() {
@@ -61,12 +59,5 @@ public class Avisos {
         this.mensajefin = mensajefin;
     }
 
-    public String getDia() {
-        return dia;
-    }
-
-    public void setDia(String dia) {
-        this.dia = dia;
-    }
 
 }

@@ -46,8 +46,9 @@ public class Data {
         });
     }
 
-    public void insertAlertas(CharSequence ni, CharSequence nf, String titulo, String mi, String mf, String dia){
-        DatabaseReference A = database.getReference("Users").child(user.getUid()).child("Avisos");
+    public void insertAlertas(CharSequence ni, CharSequence nf, String titulo, String mi, String mf,String dia){
+
+        DatabaseReference A = database.getReference("Users").child(user.getUid()).child("Avisos").child(dia);
         basicQueryValueListener();
 
         A.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -67,7 +68,7 @@ public class Data {
                 String nii= String.valueOf(ni);
                 String nff= String.valueOf(nf);
 
-                Avisos aviso = new Avisos(titulo,nii,mi,nff,mf,dia);
+                Avisos aviso = new Avisos(titulo,nii,mi,nff,mf);
                 A.child("Aviso " + value).setValue(aviso);
             }
 
