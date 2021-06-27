@@ -68,7 +68,7 @@ public class Data {
                 String nii= String.valueOf(ni);
                 String nff= String.valueOf(nf);
 
-                Avisos aviso = new Avisos(titulo,nii,mi,nff,mf);
+                Avisos aviso = new Avisos(titulo,nii,mi,nff,mf,dia);
                 A.child("Aviso " + value).setValue(aviso);
             }
 

@@ -1,19 +1,15 @@
 package adapter;
 
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.santotomas.stand_up.R;
 
-import java.sql.SQLOutput;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -47,7 +43,7 @@ public class AdapterAviso extends RecyclerView.Adapter<AdapterAviso.viewHolderAv
         holder.txtmsjeinicio.setText("Mensaje Inicio: " + av.getMensaje());
         holder.txtHoraFin.setText("Hora Fin: " + av.getHorafin()+"hrs");
         holder.txtmsjefin.setText("Mensaje Fin: " + av.getMensajefin());
-        //holder.txtDia.setText("Día: "+av.getDia());
+        holder.txtDia.setText("Día: "+av.getDia());
     }
 
     @Override

@@ -26,7 +26,7 @@
                 android:textSize="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Titulo"/>
+                android:text="Titulo :"/>
 
             <TextView
                 android:id="@+id/txtHoraIn"
@@ -62,7 +62,7 @@
                 android:textSize="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Día:"/>
+                android:text="Día :"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>
