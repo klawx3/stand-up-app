@@ -28,49 +28,49 @@
         android:orientation="horizontal">
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/checkBoxLunes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="L"/>
 
         <CheckBox
-            android:id="@+id/checkBox2"
+            android:id="@+id/checkBoxMartes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="M" />
 
         <CheckBox
-            android:id="@+id/checkBox3"
+            android:id="@+id/checkBoxMiercoles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="X" />
 
         <CheckBox
-            android:id="@+id/checkBox4"
+            android:id="@+id/checkBoxJueves"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="J" />
 
         <CheckBox
-            android:id="@+id/checkBox5"
+            android:id="@+id/checkBoxViernes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="V" />
 
         <CheckBox
-            android:id="@+id/checkBox6"
+            android:id="@+id/checkBoxSabado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="S" />
 
         <CheckBox
-            android:id="@+id/checkBox7"
+            android:id="@+id/checkBoxDomingo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

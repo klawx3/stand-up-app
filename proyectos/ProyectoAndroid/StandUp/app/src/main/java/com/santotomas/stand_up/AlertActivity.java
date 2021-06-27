@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -45,6 +46,8 @@ public class AlertActivity extends AppCompatActivity {
     Button btn_volver,btn_confirmar,btn_seleccionHoraIN,btn_seleccionHoraFin,btn_selecDia;
     EditText msje_inicio,msje_fin,txtAviso;
     int hora,minuto,dia,mes,anio;
+
+    CheckBox ch_Lunes,ch_Martes,ch_Miercoles,ch_Jueves,ch_Viernes,ch_Sabado,ch_Domingo;
 
     private PendingIntent pendingIntent;
     private final static String CHANNEL_ID = "NOTIFICACION";
@@ -79,6 +82,13 @@ public class AlertActivity extends AppCompatActivity {
         btn_seleccionHoraFin =  findViewById(R.id.btn_selechorafin);
         btn_volver = findViewById(R.id.btn_volver);
 
+        ch_Lunes = findViewById(R.id.checkBoxLunes);
+        ch_Martes = findViewById(R.id.checkBoxMartes);
+        ch_Miercoles = findViewById(R.id.checkBoxMiercoles);
+        ch_Jueves = findViewById(R.id.checkBoxJueves);
+        ch_Viernes = findViewById(R.id.checkBoxViernes);
+        ch_Sabado = findViewById(R.id.checkBoxSabado);
+        ch_Domingo = findViewById(R.id.checkBoxDomingo);
 
         Calendar actual = Calendar.getInstance();//configurar la fecha y la hora actual del dispositivo (los picker)
         Calendar calendar = Calendar.getInstance();//selecionar la fecha
@@ -169,6 +179,14 @@ public class AlertActivity extends AppCompatActivity {
         btn_confirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                if(ch_Lunes.isChecked() || ch_Martes.isChecked() || ch_Miercoles.isChecked() ||ch_Jueves.isChecked() ||
+                        ch_Viernes.isChecked() || ch_Sabado.isChecked() || ch_Domingo.isChecked()){
+                    System.out.println("HAY UNO CHECKED");
+                }else{
+                    System.out.println("NADA CHECKED");
+                }
 
                 if(TextUtils.isEmpty(msje_inicio.getText().toString()) || TextUtils.isEmpty(msje_fin.getText().toString()) || TextUtils.isEmpty(n_fin.getText())){
                     if (TextUtils.isEmpty(msje_inicio.getText().toString()) || TextUtils.isEmpty(msje_fin.getText().toString())) {
