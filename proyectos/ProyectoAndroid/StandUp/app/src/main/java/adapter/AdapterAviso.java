@@ -47,7 +47,7 @@ public class AdapterAviso extends RecyclerView.Adapter<AdapterAviso.viewHolderAv
         holder.txtmsjeinicio.setText("Mensaje Inicio: " + av.getMensaje());
         holder.txtHoraFin.setText("Hora Fin: " + av.getHorafin()+"hrs");
         holder.txtmsjefin.setText("Mensaje Fin: " + av.getMensajefin());
-        holder.txtDia.setText("Día: "+av.getDia());
+        //holder.txtDia.setText("Día: "+av.getDia());
     }
 
     @Override

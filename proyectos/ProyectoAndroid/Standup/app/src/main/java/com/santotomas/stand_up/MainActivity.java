@@ -152,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
                                             String hora_compl_act = String.format("%02d:%02d",hora_act,min_act);
 
+                                            /*
                                             if(d.compararFechas(fecha_act,av.getDia()) && d.compararHoras(hora_compl_act,av.getHora())){
                                                 System.out.println("Fecha: "+av.getDia()+" ///// Hora: "+av.getHora());
 
@@ -189,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
                                                 WorkManagmernoti.GuardarNotificacion((int) alertin,data1,tag);
                                                 WorkManagmernoti.GuardarNotificacion((int) alertf,data2,tag);
                                             }
+                                            */
 
                                         }
                                     }
