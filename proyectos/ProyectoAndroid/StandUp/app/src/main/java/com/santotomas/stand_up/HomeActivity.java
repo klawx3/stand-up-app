@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.work.WorkManager;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -62,6 +63,8 @@ public class HomeActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.txt_actionbar);
+
+        obtenerDiaActual();
 
         cargaAlertas("Lunes");
         cargaAlertas("Martes");
@@ -177,5 +180,220 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
+    private void cargarAlertas(Avisos av){
+        int random = (int)(Math.random()*50+1);
+        String tag = AlertActivity.GenerateKey();
+
+        androidx.work.Data data1 = AlertActivity.GuardarData(av.getTitulo(),
+                av.getMensaje(), random);
+        androidx.work.Data data2 = AlertActivity.GuardarData(av.getTitulo(),
+                av.getMensajefin(), random);
+
+        int segundos = 00;
+
+        String[] alerta_inicio = av.getHora().split(":");
+        int hora_alertInicio = Integer.parseInt(alerta_inicio[0]);
+        int minuto_alertInicio = Integer.parseInt(alerta_inicio[1]);
+
+        String[] alerta_fin = av.getHorafin().split(":");
+        int hora_alertFin = Integer.parseInt(alerta_fin[0]);
+        int minuto_alertFin = Integer.parseInt(alerta_fin[1]);
+
+        Calendar calendar_alert_INICIO = Calendar.getInstance();
+        Calendar calendar_alert_FIN = Calendar.getInstance();
+
+        calendar_alert_INICIO.set(Calendar.HOUR_OF_DAY,hora_alertInicio);
+        calendar_alert_INICIO.set(Calendar.MINUTE,minuto_alertInicio);
+        calendar_alert_INICIO.set(Calendar.SECOND,segundos);
+
+        calendar_alert_FIN.set(Calendar.HOUR_OF_DAY,hora_alertFin);
+        calendar_alert_FIN.set(Calendar.MINUTE,minuto_alertFin);
+        calendar_alert_FIN.set(Calendar.SECOND,segundos);
+
+        long millis_alert_INICIO = (calendar_alert_INICIO.getTimeInMillis() -
+                System.currentTimeMillis());
+
+        long millis_alert_FIN = (calendar_alert_FIN.getTimeInMillis() -
+                System.currentTimeMillis());
+
+        WorkManagmernoti.GuardarNotificacion((int) millis_alert_INICIO,data1,tag);
+        WorkManagmernoti.GuardarNotificacion((int) millis_alert_FIN,data1,tag);
+    }
+
+    private void cargarAlertasxDia(int dia){
+
+        if(dia == 1){
+            //DOM
+            DatabaseReference ref_user = database.getReference("Users").child(user.getUid()).
+                    child("Avisos").child("Domingo");
+            ref_user.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        for (DataSnapshot snapshots : snapshot.getChildren()){
+                            Avisos av = snapshots.getValue(Avisos.class);
+                            cargarAlertas(av);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+        }
+        if(dia == 2){
+            //LUN
+            DatabaseReference ref_user = database.getReference("Users").child(user.getUid()).
+                    child("Avisos").child("Lunes");
+            ref_user.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        for (DataSnapshot snapshots : snapshot.getChildren()){
+                            Avisos av = snapshots.getValue(Avisos.class);
+                            cargarAlertas(av);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+        if(dia == 3){
+            //MAR
+            DatabaseReference ref_user = database.getReference("Users").child(user.getUid()).
+                    child("Avisos").child("Martes");
+            ref_user.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        for (DataSnapshot snapshots : snapshot.getChildren()){
+                            Avisos av = snapshots.getValue(Avisos.class);
+                            cargarAlertas(av);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+        if(dia == 4){
+            //MIE
+            DatabaseReference ref_user = database.getReference("Users").child(user.getUid()).
+                    child("Avisos").child("Miercoles");
+            ref_user.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        for (DataSnapshot snapshots : snapshot.getChildren()){
+                            Avisos av = snapshots.getValue(Avisos.class);
+                            cargarAlertas(av);
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+        if(dia == 5){
+            //JUE
+            DatabaseReference ref_user = database.getReference("Users").child(user.getUid()).
+                    child("Avisos").child("Jueves");
+            ref_user.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        for (DataSnapshot snapshots : snapshot.getChildren()){
+                            Avisos av = snapshots.getValue(Avisos.class);
+                            cargarAlertas(av);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+        if(dia == 6){
+            //VIE
+            DatabaseReference ref_user = database.getReference("Users").child(user.getUid()).
+                    child("Avisos").child("Viernes");
+            ref_user.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        for (DataSnapshot snapshots : snapshot.getChildren()){
+                            Avisos av = snapshots.getValue(Avisos.class);
+                            cargarAlertas(av);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+        if(dia == 7){
+            //SAB
+            DatabaseReference ref_user = database.getReference("Users").child(user.getUid()).
+                    child("Avisos").child("Sabado");
+            ref_user.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        for (DataSnapshot snapshots : snapshot.getChildren()){
+                            Avisos av = snapshots.getValue(Avisos.class);
+                            cargarAlertas(av);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+
+    }
+
+    public void obtenerDiaActual(){
+        WorkManager.getInstance(HomeActivity.this).cancelAllWork();
+
+        Calendar calendarReinicio = Calendar.getInstance();
+        int valores = 00;
+
+        String tag_recargar = "recargar";
+        androidx.work.Data data_recargar = AlertActivity.GuardarData("null","null",1);
+
+        calendarReinicio.set(Calendar.HOUR_OF_DAY,valores);
+        calendarReinicio.set(Calendar.MINUTE,valores);
+        calendarReinicio.set(Calendar.SECOND,valores);
+
+        long recargar_notis = (calendarReinicio.getTimeInMillis() -
+                System.currentTimeMillis());
+
+        WorkManagmernoti.recargarNotificacion((int)recargar_notis,data_recargar,tag_recargar);
+
+        Calendar actual = Calendar.getInstance();
+        int today = actual.get(Calendar.DAY_OF_WEEK);
+        cargarAlertasxDia(today);
+
+    }
 
 }
