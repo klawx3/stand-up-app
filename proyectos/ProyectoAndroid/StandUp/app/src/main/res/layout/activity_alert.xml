@@ -7,6 +7,14 @@
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".AlertActivity">
+    <TextView
+        android:id="@+id/txt_diadelasemana"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:hint="Día"
+        />
 
     <EditText
         android:id="@+id/txtTitulo"

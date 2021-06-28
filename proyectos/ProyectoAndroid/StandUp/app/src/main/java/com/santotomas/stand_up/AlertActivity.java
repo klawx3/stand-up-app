@@ -42,7 +42,7 @@ import scripts.Data;
 
 public class AlertActivity extends AppCompatActivity {
 
-    TextView txt_Dia,n_inicio, n_fin;
+    TextView txt_Dia,n_inicio, n_fin,txtDia;
     Button btn_volver,btn_confirmar,btn_seleccionHoraIN,btn_seleccionHoraFin,btn_selecDia;
     EditText msje_inicio,msje_fin,txtAviso;
     int hora,minuto,dia,mes,anio;
@@ -72,6 +72,7 @@ public class AlertActivity extends AppCompatActivity {
         n_fin = findViewById(R.id.tv_horafin);
         txt_Dia = findViewById(R.id.tv_dia);
 
+        txtDia = findViewById(R.id.txt_diadelasemana);
         txtAviso = findViewById(R.id.txtTitulo);
         msje_inicio = findViewById(R.id.txt_msje_inicio);
         msje_fin = findViewById(R.id.txt_msje_fin);
@@ -135,6 +136,12 @@ public class AlertActivity extends AppCompatActivity {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(v.getContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int h, int m) {
+                        int today = actual.get(Calendar.DAY_OF_WEEK);
+                        //prueba txt diadelasemana
+                        System.out.println("-------------------------------");
+                        System.out.println(today);
+                        System.out.println("-------------------------------");
+
                         calendar.set(Calendar.HOUR_OF_DAY,h);
                         calendar.set(Calendar.MINUTE,m);
                         calendar.set(Calendar.SECOND,segundero_inicio);
