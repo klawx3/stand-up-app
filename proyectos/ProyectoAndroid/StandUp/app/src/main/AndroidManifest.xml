@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_index"
         android:supportsRtl="true"
         android:theme="@style/Theme.StandUp">
-        <activity android:name=".NosotrosActivity"></activity>
+        <activity android:name=".EnviarTiempoActivity"></activity>
+        <activity android:name=".ConfigHoraActivity" />
+        <activity android:name=".NosotrosActivity" />
         <activity android:name=".AlertEspecificaActivity" />
         <activity android:name=".TipoAlertActivity" />
         <activity android:name=".AlertRepetitivaActivity">

@@ -89,9 +89,7 @@ public class AlertRepetitivaActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();//selecionar la fecha
         Calendar calendar_fn = Calendar.getInstance();//
 
-
         btn_seleccionHoraFin.setEnabled(false);
-
         btn_seleccionHoraIN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,7 +124,6 @@ public class AlertRepetitivaActivity extends AppCompatActivity {
                         calendar_fn.set(Calendar.HOUR_OF_DAY,ho);
                         calendar_fn.set(Calendar.MINUTE,mi);
                         calendar_fn.set(Calendar.SECOND,seg);
-                        
 
                         n_fin.setText(String.format("%02d:%02d",ho,mi));
                     }
@@ -138,9 +135,10 @@ public class AlertRepetitivaActivity extends AppCompatActivity {
         btn_volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goHome();
+                goTipoAlert();
             }
         });
+
 
         btn_confirmar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,7 +152,6 @@ public class AlertRepetitivaActivity extends AppCompatActivity {
                         if(ch_Lunes.isChecked() || ch_Martes.isChecked() || ch_Miercoles.isChecked() ||ch_Jueves.isChecked() ||
                                 ch_Viernes.isChecked() || ch_Sabado.isChecked() || ch_Domingo.isChecked()){
 
-
                             if (TextUtils.isEmpty(msje_inicio.getText().toString())){
                                 msje_inicio.setText("¡Ponte de pie!");
                             }
@@ -166,8 +163,6 @@ public class AlertRepetitivaActivity extends AppCompatActivity {
                             if (TextUtils.isEmpty(txtAviso.getText().toString())){
                                 txtAviso.setText("STAND UP APP");
                             }
-
-
 
                             int random = (int)(Math.random()*50+1);
 
@@ -218,44 +213,14 @@ public class AlertRepetitivaActivity extends AppCompatActivity {
                     }else
                     {
                         Toast.makeText(AlertRepetitivaActivity.this, "Asegurese que la hora final es posterior a la inicial.", Toast.LENGTH_SHORT).show();
-
                     }
                 }
-
-
-
             }
         });
     } // ---------------------------
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.items_menu,menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.item_cerrar:
-                AuthUI.getInstance()
-                        .signOut(this)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                finish();
-                                Toast.makeText(AlertRepetitivaActivity.this, "Sesión cerrada.", Toast.LENGTH_SHORT).show();
-                                backLogin();
-                            }
-                        });
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void backLogin() {
-        Intent i = new Intent(this,MainActivity.class);
+    private void goTipoAlert(){
+        Intent i = new Intent(this, TipoAlertActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
     }

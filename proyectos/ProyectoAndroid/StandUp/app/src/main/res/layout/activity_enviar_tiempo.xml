@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ConfigHoraActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="¡Envía tu tiempo!"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginVertical="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¡Aquí podrás enviarnos el tiempo que calculas  trabajaste de pie durante el día para que nosotros podamos almacenar tu progreso!"
+        android:gravity="center"
+        android:layout_marginHorizontal="5dp"
+        android:textSize="20dp"/>
+
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"/>
+
+    <EditText
+        android:id="@+id/txt_ENVIARTIEMPO_tiempoMIN"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:hint="*en minutos*"
+        android:inputType="number"
+        android:gravity="center"/>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_ENVIARTIEMPO_volver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Volver"/>
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btn_ENVIARTIEMPO_enviar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enviar"/>
+
+
+    </LinearLayout>
+</LinearLayout>

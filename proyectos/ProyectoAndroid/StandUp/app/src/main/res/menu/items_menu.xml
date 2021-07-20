@@ -4,7 +4,19 @@
 
     <item
         android:id="@+id/item_alert"
-        android:title="Agregar Aviso"
+        android:title="Crear Alerta"
+        app:showAsAction="never">
+    </item>
+
+    <item
+        android:id="@+id/item_enviartiempo"
+        android:title="Enviar tiempo"
+        app:showAsAction="never">
+    </item>
+
+    <item
+        android:id="@+id/item_confhora"
+        android:title="Recordatorio"
         app:showAsAction="never">
     </item>
 

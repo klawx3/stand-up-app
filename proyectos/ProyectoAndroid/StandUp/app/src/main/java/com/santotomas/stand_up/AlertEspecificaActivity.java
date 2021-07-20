@@ -47,8 +47,6 @@ public class AlertEspecificaActivity extends AppCompatActivity {
     EditText msje_inicio,msje_fin,txtAviso;
     int hora,minuto,dia,mes,anio;
 
-
-
     private PendingIntent pendingIntent;
     private final static String CHANNEL_ID = "NOTIFICACION";
     private final static int NOTIFICACION_ID = 0;
@@ -128,12 +126,6 @@ public class AlertEspecificaActivity extends AppCompatActivity {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(v.getContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int h, int m) {
-                        int today = actual.get(Calendar.DAY_OF_WEEK);
-                        //prueba txt diadelasemana
-                        System.out.println("-------------------------------");
-                        System.out.println(today);
-                        System.out.println("-------------------------------");
-
                         calendar.set(Calendar.HOUR_OF_DAY,h);
                         calendar.set(Calendar.MINUTE,m);
                         calendar.set(Calendar.SECOND,segundero_inicio);
@@ -171,7 +163,7 @@ public class AlertEspecificaActivity extends AppCompatActivity {
         btn_volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goHome();
+                goTipoAlert();
             }
         });
 
@@ -225,48 +217,16 @@ public class AlertEspecificaActivity extends AppCompatActivity {
         });
     } // ---------------------------
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.items_menu,menu);
 
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.item_cerrar:
-                AuthUI.getInstance()
-                        .signOut(this)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                finish();
-                                Toast.makeText(AlertEspecificaActivity.this, "Sesión cerrada.", Toast.LENGTH_SHORT).show();
-                                backLogin();
-                            }
-                        });
-            case R.id.item_nosotros:
-                goNosotros();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void goNosotros(){
-        Intent i = new Intent(this, NosotrosActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(i);
-    }
-
-    private void backLogin() {
-        Intent i = new Intent(this,MainActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(i);
-    }
 
     private void goHome() {
         Intent i = new Intent(this,HomeActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+    }
+
+    private void goTipoAlert(){
+        Intent i = new Intent(this, TipoAlertActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
     }

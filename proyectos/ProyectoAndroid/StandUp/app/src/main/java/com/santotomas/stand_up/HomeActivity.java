@@ -64,6 +64,7 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.txt_actionbar);
 
+
         //obtenerDiaActual();
 
         cargaAlertas("Lunes");
@@ -73,6 +74,7 @@ public class HomeActivity extends AppCompatActivity {
         cargaAlertas("Viernes");
         cargaAlertas("Sabado");
         cargaAlertas("Domingo");
+        cargaAlertas("Especificos");
         buscarAlertas();
 
         d.userDataBase();
@@ -174,6 +176,13 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             case R.id.item_nosotros:
                 goNosotros();
+                break;
+            case R.id.item_confhora:
+                goConfigHora();
+                break;
+            case R.id.item_enviartiempo:
+                goEnviarTiempo();
+                break;
 
         }
         return super.onOptionsItemSelected(item);
@@ -181,6 +190,12 @@ public class HomeActivity extends AppCompatActivity {
 
     private void backLogin() {
         Intent i = new Intent(this,MainActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+    }
+
+    private void goConfigHora() {
+        Intent i = new Intent(this,ConfigHoraActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
     }
@@ -193,6 +208,12 @@ public class HomeActivity extends AppCompatActivity {
 
     private void goNosotros(){
         Intent i = new Intent(this, NosotrosActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+    }
+
+    private void goEnviarTiempo(){
+        Intent i = new Intent(this, EnviarTiempoActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
     }
