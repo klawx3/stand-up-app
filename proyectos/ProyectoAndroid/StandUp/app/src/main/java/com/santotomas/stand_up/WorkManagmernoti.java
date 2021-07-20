@@ -44,10 +44,10 @@ public class WorkManagmernoti extends Worker {
     @Override
     public Result doWork() {
 
-        if(getInputData().getString("titulo") == "null" && getInputData().getString("detalle") == "null"){
-            HomeActivity h = new HomeActivity();
-            h.obtenerDiaActual();
-        }
+        //if(getInputData().getString("titulo") == "null" && getInputData().getString("detalle") == "null"){
+        //    HomeActivity h = new HomeActivity();
+        //    h.obtenerDiaActual();
+        //}
 
         String titulo = getInputData().getString("titulo");
         String detalle = getInputData().getString("detalle");

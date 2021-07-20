@@ -1,5 +1,8 @@
 package com.santotomas.stand_up;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.DatePickerDialog;
@@ -20,9 +23,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -40,14 +40,14 @@ import java.util.UUID;
 
 import scripts.Data;
 
-public class AlertActivity extends AppCompatActivity {
+public class AlertEspecificaActivity extends AppCompatActivity {
 
     TextView txt_Dia,n_inicio, n_fin,txtDia;
     Button btn_volver,btn_confirmar,btn_seleccionHoraIN,btn_seleccionHoraFin,btn_selecDia;
     EditText msje_inicio,msje_fin,txtAviso;
     int hora,minuto,dia,mes,anio;
 
-    CheckBox ch_Lunes,ch_Martes,ch_Miercoles,ch_Jueves,ch_Viernes,ch_Sabado,ch_Domingo;
+
 
     private PendingIntent pendingIntent;
     private final static String CHANNEL_ID = "NOTIFICACION";
@@ -58,7 +58,7 @@ public class AlertActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_alert);
+        setContentView(R.layout.activity_alert_especifica);
 
         Data data = new Data();
 
@@ -72,7 +72,6 @@ public class AlertActivity extends AppCompatActivity {
         n_fin = findViewById(R.id.tv_horafin);
         txt_Dia = findViewById(R.id.tv_dia);
 
-        txtDia = findViewById(R.id.txt_diadelasemana);
         txtAviso = findViewById(R.id.txtTitulo);
         msje_inicio = findViewById(R.id.txt_msje_inicio);
         msje_fin = findViewById(R.id.txt_msje_fin);
@@ -83,13 +82,6 @@ public class AlertActivity extends AppCompatActivity {
         btn_seleccionHoraFin =  findViewById(R.id.btn_selechorafin);
         btn_volver = findViewById(R.id.btn_volver);
 
-        ch_Lunes = findViewById(R.id.checkBoxLunes);
-        ch_Martes = findViewById(R.id.checkBoxMartes);
-        ch_Miercoles = findViewById(R.id.checkBoxMiercoles);
-        ch_Jueves = findViewById(R.id.checkBoxJueves);
-        ch_Viernes = findViewById(R.id.checkBoxViernes);
-        ch_Sabado = findViewById(R.id.checkBoxSabado);
-        ch_Domingo = findViewById(R.id.checkBoxDomingo);
 
         Calendar actual = Calendar.getInstance();//configurar la fecha y la hora actual del dispositivo (los picker)
         Calendar calendar = Calendar.getInstance();//selecionar la fecha
@@ -167,7 +159,7 @@ public class AlertActivity extends AppCompatActivity {
                         calendar_fn.set(Calendar.HOUR_OF_DAY,ho);
                         calendar_fn.set(Calendar.MINUTE,mi);
                         calendar_fn.set(Calendar.SECOND,seg);
-                        
+
 
                         n_fin.setText(String.format("%02d:%02d",ho,mi));
                     }
@@ -187,87 +179,46 @@ public class AlertActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                                    //Se valida que existan días seleccionados para generar notificación. //
-                if(ch_Lunes.isChecked() || ch_Martes.isChecked() || ch_Miercoles.isChecked() ||ch_Jueves.isChecked() ||
-                        ch_Viernes.isChecked() || ch_Sabado.isChecked() || ch_Domingo.isChecked()){
-
-                                    //Se valida que exista información necesaria para generar notificación. //
-                    if(TextUtils.isEmpty(msje_inicio.getText().toString()) || TextUtils.isEmpty(msje_fin.getText().toString()) || TextUtils.isEmpty(n_fin.getText())){
-                        if (TextUtils.isEmpty(msje_inicio.getText().toString()) || TextUtils.isEmpty(msje_fin.getText().toString())) {
-                            Toast.makeText(AlertActivity.this, "Ingrese mensajes.", Toast.LENGTH_SHORT).show();
-
-                        }
-                        if(TextUtils.isEmpty(n_fin.getText())){
-                            Toast.makeText(AlertActivity.this, "Ingrese hora de fin válida.", Toast.LENGTH_SHORT).show();
-                        }
-                    }else{
-
-                        int random = (int)(Math.random()*50+1);
-
-                        String tag = GenerateKey();
-                        long alertin = (calendar.getTimeInMillis() - System.currentTimeMillis());
-                        long alertf = (calendar_fn.getTimeInMillis() - System.currentTimeMillis());
-
-                        if(ch_Lunes.isChecked()){
-                            data.insertAlertas(n_inicio.getText(),n_fin.getText(),txtAviso.getText().toString(),
-                                    msje_inicio.getText().toString(),msje_fin.getText().toString(),"Lunes");
-                        }
-                        if(ch_Martes.isChecked()){
-                            data.insertAlertas(n_inicio.getText(),n_fin.getText(),txtAviso.getText().toString(),
-                                    msje_inicio.getText().toString(),msje_fin.getText().toString(),"Martes");
-                        }
-                        if(ch_Miercoles.isChecked()){
-                            data.insertAlertas(n_inicio.getText(),n_fin.getText(),txtAviso.getText().toString(),
-                                    msje_inicio.getText().toString(),msje_fin.getText().toString(),"Miercoles");
-                        }
-                        if(ch_Jueves.isChecked()){
-                            data.insertAlertas(n_inicio.getText(),n_fin.getText(),txtAviso.getText().toString(),
-                                    msje_inicio.getText().toString(),msje_fin.getText().toString(),"Jueves");
-                        }
-                        if(ch_Viernes.isChecked()){
-                            data.insertAlertas(n_inicio.getText(),n_fin.getText(),txtAviso.getText().toString(),
-                                    msje_inicio.getText().toString(),msje_fin.getText().toString(),"Viernes");
-                        }
-                        if(ch_Sabado.isChecked()){
-                            data.insertAlertas(n_inicio.getText(),n_fin.getText(),txtAviso.getText().toString(),
-                                    msje_inicio.getText().toString(),msje_fin.getText().toString(),"Sabado");
-                        }
-                        if(ch_Domingo.isChecked()){
-                            data.insertAlertas(n_inicio.getText(),n_fin.getText(),txtAviso.getText().toString(),
-                                    msje_inicio.getText().toString(),msje_fin.getText().toString(),"Domingo");
-                        }
-
-                        androidx.work.Data data1 = GuardarData(txtAviso.getText().toString(),msje_inicio.getText().toString(), random);
-                        androidx.work.Data data2 = GuardarData(txtAviso.getText().toString(),msje_fin.getText().toString(), random);
-
-                        WorkManagmernoti.GuardarNotificacion((int) alertin,data1,tag);
-                        WorkManagmernoti.GuardarNotificacion((int) alertf,data2,tag);
-
-                        Toast.makeText(AlertActivity.this, "Aviso creado.", Toast.LENGTH_SHORT).show();
-
-                        goHome();
-
-                        /*
-                        DatabaseReference A = database.getReference("Users").child(user.getUid()).child("Avisos");
-                        A.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                                if(data.compararHoras(n_inicio.getText().toString(),n_fin.getText().toString()) && data.compararFechas(fec_act,txt_Dia.getText().toString())){
-
-                                    //data.insertAlertas(n_inicio.getText(),n_fin.getText(),txtAviso.getText().toString(),msje_inicio.getText().toString(),msje_fin.getText().toString(),txt_Dia.getText().toString());
-                                    goHome();
-                                }else
-                                    Toast.makeText(AlertActivity.this, "Asegurese que la hora final es posterior a la inicial y la fecha posterior a la actual", Toast.LENGTH_SHORT).show();
-                            }
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-                            }
-                        });
-                        */
-                    }
+                if(TextUtils.isEmpty(n_fin.getText())){
+                    Toast.makeText(AlertEspecificaActivity.this, "Ingrese hora de fin válida.", Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(AlertActivity.this, "POR FAVOR SELECCIONE DIA(S) A NOTIFICAR", Toast.LENGTH_SHORT).show();
+
+                    if (TextUtils.isEmpty(msje_inicio.getText().toString())){
+                        msje_inicio.setText("¡Ponte de pie!");
+                    }
+
+                    if(TextUtils.isEmpty(msje_fin.getText().toString())){
+                        msje_fin.setText("¡Ya puedes sentarte!");
+                    }
+
+                    if (TextUtils.isEmpty(txtAviso.getText().toString())){
+                        txtAviso.setText("STAND UP APP");
+                    }
+
+                    int random = (int)(Math.random()*50+1);
+
+                    String tag = GenerateKey();
+                    long alertin = (calendar.getTimeInMillis() - System.currentTimeMillis());
+                    long alertf = (calendar_fn.getTimeInMillis() - System.currentTimeMillis());
+
+
+                    DatabaseReference A = database.getReference("Users").child(user.getUid()).child("Avisos");
+                    A.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            if(data.compararHoras(n_inicio.getText().toString(),n_fin.getText().toString()) && data.compararFechas(fec_act,txt_Dia.getText().toString())){
+
+                                data.insertAlertasEsp(n_inicio.getText(),n_fin.getText(),txtAviso.getText().toString(),msje_inicio.getText().toString(),msje_fin.getText().toString(),txt_Dia.getText().toString());
+                                Toast.makeText(AlertEspecificaActivity.this, "Aviso creado.", Toast.LENGTH_SHORT).show();
+                                goHome();
+                            }else
+                                Toast.makeText(AlertEspecificaActivity.this, "Asegurese que la hora final es posterior a la inicial y la fecha posterior a la actual", Toast.LENGTH_SHORT).show();
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
                 }
 
             }
@@ -292,12 +243,20 @@ public class AlertActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 finish();
-                                Toast.makeText(AlertActivity.this, "Sesión cerrada.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AlertEspecificaActivity.this, "Sesión cerrada.", Toast.LENGTH_SHORT).show();
                                 backLogin();
                             }
                         });
+            case R.id.item_nosotros:
+                goNosotros();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void goNosotros(){
+        Intent i = new Intent(this, NosotrosActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
     }
 
     private void backLogin() {
@@ -323,5 +282,4 @@ public class AlertActivity extends AppCompatActivity {
                 .putString("detalle", detalle)
                 .putInt("id_noti",not).build();
     }
-
 }

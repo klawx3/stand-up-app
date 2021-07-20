@@ -6,15 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".AlertActivity">
-    <TextView
-        android:id="@+id/txt_diadelasemana"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:hint="Día"
-        />
+    tools:context=".AlertRepetitivaActivity">
 
     <EditText
         android:id="@+id/txtTitulo"
@@ -23,67 +15,6 @@
         android:hint="Titulo de notificación"
         android:gravity="center"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Día(s):"
-        android:textSize="20sp"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="63dp"
-        android:orientation="horizontal">
-
-        <CheckBox
-            android:id="@+id/checkBoxLunes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="L"/>
-
-        <CheckBox
-            android:id="@+id/checkBoxMartes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="M" />
-
-        <CheckBox
-            android:id="@+id/checkBoxMiercoles"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="X" />
-
-        <CheckBox
-            android:id="@+id/checkBoxJueves"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="J" />
-
-        <CheckBox
-            android:id="@+id/checkBoxViernes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="V" />
-
-        <CheckBox
-            android:id="@+id/checkBoxSabado"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="S" />
-
-        <CheckBox
-            android:id="@+id/checkBoxDomingo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="D" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -142,7 +73,6 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:hint="Especifique mensaje de inicio"/>
-
 
     <EditText
         android:id="@+id/txt_msje_fin"

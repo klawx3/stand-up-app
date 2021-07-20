@@ -14,11 +14,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -27,10 +29,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 import adapter.AdapterAviso;
 import scripts.Avisos;
@@ -64,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.txt_actionbar);
 
-        obtenerDiaActual();
+        //obtenerDiaActual();
 
         cargaAlertas("Lunes");
         cargaAlertas("Martes");
@@ -76,6 +76,15 @@ public class HomeActivity extends AppCompatActivity {
         buscarAlertas();
 
         d.userDataBase();
+
+        FloatingActionButton fab = findViewById(R.id.agregar_aviso);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goTipoAlert();
+            }
+        });
+
 
     } // ----------------------------
 
@@ -161,7 +170,10 @@ public class HomeActivity extends AppCompatActivity {
                             }
                         });
             case R.id.item_alert:
-                goAlert();
+                goTipoAlert();
+                break;
+            case R.id.item_nosotros:
+                goNosotros();
 
         }
         return super.onOptionsItemSelected(item);
@@ -173,8 +185,14 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    private void goAlert(){
-        Intent i = new Intent(this, AlertActivity.class);
+    private void goTipoAlert(){
+        Intent i = new Intent(this, TipoAlertActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+    }
+
+    private void goNosotros(){
+        Intent i = new Intent(this, NosotrosActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
     }
@@ -182,11 +200,11 @@ public class HomeActivity extends AppCompatActivity {
 
     private void cargarAlertas(Avisos av){
         int random = (int)(Math.random()*50+1);
-        String tag = AlertActivity.GenerateKey();
+        String tag = AlertRepetitivaActivity.GenerateKey();
 
-        androidx.work.Data data1 = AlertActivity.GuardarData(av.getTitulo(),
+        androidx.work.Data data1 = AlertRepetitivaActivity.GuardarData(av.getTitulo(),
                 av.getMensaje(), random);
-        androidx.work.Data data2 = AlertActivity.GuardarData(av.getTitulo(),
+        androidx.work.Data data2 = AlertRepetitivaActivity.GuardarData(av.getTitulo(),
                 av.getMensajefin(), random);
 
         int segundos = 00;
@@ -379,7 +397,7 @@ public class HomeActivity extends AppCompatActivity {
         int valores = 00;
 
         String tag_recargar = "recargar";
-        androidx.work.Data data_recargar = AlertActivity.GuardarData("null","null",1);
+        androidx.work.Data data_recargar = AlertRepetitivaActivity.GuardarData("null","null",1);
 
         calendarReinicio.set(Calendar.HOUR_OF_DAY,valores);
         calendarReinicio.set(Calendar.MINUTE,valores);
@@ -395,5 +413,6 @@ public class HomeActivity extends AppCompatActivity {
         cargarAlertasxDia(today);
 
     }
+
 
 }

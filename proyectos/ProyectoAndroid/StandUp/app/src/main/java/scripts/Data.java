@@ -25,9 +25,30 @@ public class Data {
     //DatabaseReference avis = database.getReference("Users").child(user.getUid()).child("Avisos");
 
     List<Integer> list_lastaviso = new ArrayList<>();
+    List<Integer> list_lastavisoEsp = new ArrayList<>();
 
     public void basicQueryValueListener(String dia) {
         DatabaseReference avis = database.getReference("Users").child(user.getUid()).child("Avisos").child(dia);
+        Query myTopPostsQuery = avis.limitToLast(1);
+        myTopPostsQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    String key = postSnapshot.getKey();
+                    String[] arr = key.split(" ");
+                    list_lastavisoEsp.clear();
+                    list_lastavisoEsp.add(Integer.parseInt(arr[1]));
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("Falló");
+            }
+        });
+    }
+
+    public void basicQueryValueListenerEsp() {
+        DatabaseReference avis = database.getReference("Users").child(user.getUid()).child("Avisos").child("Especificos");
         Query myTopPostsQuery = avis.limitToLast(1);
         myTopPostsQuery.addValueEventListener(new ValueEventListener() {
             @Override
@@ -47,9 +68,40 @@ public class Data {
     }
 
     public void insertAlertas(CharSequence ni, CharSequence nf, String titulo, String mi, String mf,String dia){
-
         DatabaseReference A = database.getReference("Users").child(user.getUid()).child("Avisos").child(dia);
         basicQueryValueListener(dia);
+
+        A.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (int val : list_lastaviso){
+                    value = val;
+                }
+
+                //if para comenzar los avisos en 10, esto, con el fin
+                //de no generar problemas al crear más de 10 avisos
+                if(value == 0){
+                    value = 9;
+                }
+
+                value++;
+                String nii= String.valueOf(ni);
+                String nff= String.valueOf(nf);
+
+                Avisos aviso = new Avisos(titulo,nii,mi,nff,mf,dia);
+                A.child("Aviso " + value).setValue(aviso);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                //TO DO
+            }
+        });
+    }
+
+    public void insertAlertasEsp(CharSequence ni, CharSequence nf, String titulo, String mi, String mf,String dia){
+        DatabaseReference A = database.getReference("Users").child(user.getUid()).child("Avisos").child("Especificos");
+        basicQueryValueListenerEsp();
 
         A.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".NosotrosActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="¿Quiénes somos?"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginVertical="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¡Stand Up APP es una aplicación que busca ayudarte durante periodos de trabajo sentado.\nEntregamos una herramienta que te ayudará a programar y recordar periodos de trabajo de pie, durante un largo periodo sentado.\nSomos concientes de que, trabajar al menos 10 minutos de pie al día, mejorará tu estado físico. No cuesta nada\n¡Buscamos mejorar tu calidad de vida!  "
+        android:gravity="center"
+        android:textSize="20dp"/>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"/>
+
+    <Button
+        android:id="@+id/btn_NOSOTROS_volver"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|center"
+        android:text="Volver"/>
+</LinearLayout>
