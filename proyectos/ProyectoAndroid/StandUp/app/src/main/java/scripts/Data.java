@@ -67,6 +67,32 @@ public class Data {
         });
     }
 
+    public void insertTiempo(String tiempo, String dia){
+        DatabaseReference A = database.getReference("Users").child(user.getUid()).child("Tiempo");
+        A.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (int val : list_lastaviso){
+                    value = val;
+                }
+
+                if(value == 0){
+                    value = 9;
+                }
+
+                value++;
+
+                Tiempo t = new Tiempo(tiempo,dia);
+                A.child("Tiempo" + value).setValue(t);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                //TO DO
+            }
+        });
+    }
+
     public void insertAlertas(CharSequence ni, CharSequence nf, String titulo, String mi, String mf,String dia){
         DatabaseReference A = database.getReference("Users").child(user.getUid()).child("Avisos").child(dia);
         basicQueryValueListener(dia);
