@@ -191,7 +191,7 @@ public class AlertEspecificaActivity extends AppCompatActivity {
 
                     String tag = GenerateKey();
                     long alertin = (calendar.getTimeInMillis() - System.currentTimeMillis());
-                    long alertf = (calendar_fn.getTimeInMillis() - System.currentTimeMillis());
+                    long aleartf = (calendar_fn.getTimeInMillis() - System.currentTimeMillis());
 
 
                     DatabaseReference A = database.getReference("Users").child(user.getUid()).child("Avisos");
@@ -204,6 +204,12 @@ public class AlertEspecificaActivity extends AppCompatActivity {
                                 data.insertAlertasEsp(n_inicio.getText(),n_fin.getText(),txtAviso.getText().toString(),msje_inicio.getText().toString(),msje_fin.getText().toString(),txt_Dia.getText().toString());
                                 Toast.makeText(AlertEspecificaActivity.this, "Aviso creado.", Toast.LENGTH_SHORT).show();
                                 goHome();
+                                
+                                androidx.work.Data data1 = GuardarData(txtAviso.getText().toString(),msje_inicio.getText().toString(), random);
+                                androidx.work.Data data2 = GuardarData(txtAviso.getText().toString(),msje_fin.getText().toString(), random);
+
+                                WorkManagmernoti.GuardarNotificacion((int) alertin,data1,tag);
+                                WorkManagmernoti.GuardarNotificacion((int) aleartf,data2,tag);
                             }else
                                 Toast.makeText(AlertEspecificaActivity.this, "Asegurese que la hora final es posterior a la inicial y la fecha posterior a la actual", Toast.LENGTH_SHORT).show();
                         }
