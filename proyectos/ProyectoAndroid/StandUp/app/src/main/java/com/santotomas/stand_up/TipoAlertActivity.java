@@ -31,7 +31,8 @@ public class TipoAlertActivity extends AppCompatActivity {
         btn_alerta_repetitiva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goLayoutRepetitiva();
+                Toast.makeText(TipoAlertActivity.this, "¡Próximamente tendremos avisos repetitivos!", Toast.LENGTH_SHORT).show();
+
             }
         });
 
