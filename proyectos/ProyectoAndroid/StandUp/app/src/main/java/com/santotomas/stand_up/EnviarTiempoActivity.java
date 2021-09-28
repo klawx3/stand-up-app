@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import scripts.Data;
@@ -29,7 +30,28 @@ public class EnviarTiempoActivity extends AppCompatActivity {
         btn_enviar = findViewById(R.id.btn_ENVIARTIEMPO_enviar);
 
         txt_tiempo_minutos = findViewById(R.id.txt_ENVIARTIEMPO_tiempoMIN);
-        Calendar actual = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance();
+
+        //*dia de la semana
+        Calendar l = Calendar.getInstance();
+        Calendar m = Calendar.getInstance();
+        Calendar mi = Calendar.getInstance();
+        Calendar j = Calendar.getInstance();
+        Calendar vi = Calendar.getInstance();
+        Calendar s = Calendar.getInstance();
+        Calendar d = Calendar.getInstance();
+
+        //*add
+        l.add(Calendar.DAY_OF_WEEK,2);
+        m.add(Calendar.DAY_OF_WEEK,3);
+        mi.add(Calendar.DAY_OF_WEEK,4);
+        j.add(Calendar.DAY_OF_WEEK,5);
+        vi.add(Calendar.DAY_OF_WEEK,6);
+        s.add(Calendar.DAY_OF_WEEK,7);
+        d.add(Calendar.DAY_OF_WEEK,1);
+
+        long hoy = cal.getTimeInMillis();
+        long despues = cal.getTimeInMillis();
 
         btn_volver.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,8 +65,103 @@ public class EnviarTiempoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (TextUtils.isEmpty(txt_tiempo_minutos.getText())){
                     Toast.makeText(EnviarTiempoActivity.this, "Ingrese tiempo valido.", Toast.LENGTH_SHORT).show();
+                    System.out.println("------------------------------");
+                    System.out.println("entrooooooooooooooo");
+                    System.out.println("--------------------");
+                    System.out.println("--------------------");
                 }else{
-                    data.insertTiempo(txt_tiempo_minutos.getText().toString(),actual.getTime().toString());
+                    System.out.println("------------------------------");
+                    System.out.println("entrooooooooooooooo else");
+                    System.out.println("--------------------");
+                    System.out.println("--------------------");
+
+                    if(l.get(Calendar.DAY_OF_WEEK) == 2){
+
+                        if(despues > hoy){
+                            System.out.println("______________________________________");
+                            System.out.println("lunes");
+                            System.out.println("______________________________________");
+                        }else {
+                            System.out.println("______________________________________");
+                            System.out.println("lunes ELSE");
+                            System.out.println("______________________________________");
+                        }
+                    }else if (m.get(Calendar.DAY_OF_WEEK) == 3){
+
+                        if(despues > hoy){
+                            System.out.println("______________________________________");
+                            System.out.println("martes");
+                            System.out.println("______________________________________");
+                        }else {
+                            System.out.println("______________________________________");
+                            System.out.println("martes ELSE");
+                            System.out.println("______________________________________");
+                        }
+
+                    }else if (mi.get(Calendar.DAY_OF_WEEK) == 4){
+
+                        if(despues > hoy){
+                            System.out.println("______________________________________");
+                            System.out.println("miercoles");
+                            System.out.println("______________________________________");
+                        }else {
+                            System.out.println("______________________________________");
+                            System.out.println("miercoles ELSE");
+                            System.out.println("______________________________________");
+                        }
+
+                    }else if (j.get(Calendar.DAY_OF_WEEK) == 5){
+
+                        if(despues > hoy){
+                            System.out.println("______________________________________");
+                            System.out.println("jueves");
+                            System.out.println("______________________________________");
+                        }else {
+                            System.out.println("______________________________________");
+                            System.out.println("jueves ELSE");
+                            System.out.println("______________________________________");
+                        }
+
+                    }else if (vi.get(Calendar.DAY_OF_WEEK) == 6){
+
+                        if(despues > hoy){
+                            System.out.println("______________________________________");
+                            System.out.println("viernes");
+                            System.out.println("______________________________________");
+                        }else {
+                            System.out.println("______________________________________");
+                            System.out.println("viernes ELSE");
+                            System.out.println("______________________________________");
+                        }
+
+                    }else if (s.get(Calendar.DAY_OF_WEEK) == 7){
+
+                        if(despues > hoy){
+                            System.out.println("______________________________________");
+                            System.out.println("sabado");
+                            System.out.println("______________________________________");
+                        }else {
+                            System.out.println("______________________________________");
+                            System.out.println("sabado ELSE");
+                            System.out.println("______________________________________");
+                        }
+
+                    }else if (d.get(Calendar.DAY_OF_WEEK) == 1){
+
+                        if(despues > hoy){
+                            System.out.println("______________________________________");
+                            System.out.println("domingo");
+                            System.out.println("______________________________________");
+                        }else {
+                            System.out.println("______________________________________");
+                            System.out.println("domingo ELSE");
+                            System.out.println("______________________________________");
+                        }
+
+                    }
+                    data.insertTiempo(txt_tiempo_minutos.getText().toString(),cal.getTime().toString());
+                    System.out.println("FECHA HOY: " + String.valueOf(hoy)+"  "+new SimpleDateFormat("dd/MM/yyyy").format(hoy));
+                    System.out.println("FECHA DESPUES: "+ String.valueOf(despues)+"  "+new SimpleDateFormat("dd/MM/yyyy").format(despues));
                 }
 
                 //************************** VER SI SE PUEDE RESCATAR EL TIEMPO EN LA BD PARA QUE CUANDO SE HAGA EL PROXIMO INSERT SE SUME CON LO QUE EL USUARIO ENTREGA
