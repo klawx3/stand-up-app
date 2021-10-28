@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.santotomas.stand_up.R;
+import com.santotomas.stand_up_versionFinal.R;
 
 import java.util.Calendar;
 import java.util.List;

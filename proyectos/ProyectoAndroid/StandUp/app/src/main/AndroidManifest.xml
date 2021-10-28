@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.santotomas.stand_up">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.santotomas.stand_up_versionFinal">
 
     <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
     <uses-permission android:name="android.permission.READ_CALENDAR"/>
@@ -18,19 +19,15 @@
         android:roundIcon="@mipmap/ic_index"
         android:supportsRtl="true"
         android:theme="@style/Theme.StandUp">
-        <activity android:name=".EnviarTiempoActivity"></activity>
-        <activity android:name=".ConfigHoraActivity" />
-        <activity android:name=".NosotrosActivity" />
-        <activity android:name=".AlertEspecificaActivity" />
-        <activity android:name=".TipoAlertActivity" />
-        <activity android:name=".AlertRepetitivaActivity">
-            android:theme="@style/SplashTheme"
-        </activity>
-        <activity android:name=".HomeActivity">
-            android:theme="@style/SplashTheme"
-        </activity>
+        <activity android:name="com.santotomas.stand_up_versionFinal.EnviarTiempoActivity" />
+        <activity android:name="com.santotomas.stand_up_versionFinal.ConfigHoraActivity" />
+        <activity android:name="com.santotomas.stand_up_versionFinal.NosotrosActivity" />
+        <activity android:name="com.santotomas.stand_up_versionFinal.AlertEspecificaActivity" />
+        <activity android:name="com.santotomas.stand_up_versionFinal.TipoAlertActivity" />
+        <activity android:name="com.santotomas.stand_up_versionFinal.AlertRepetitivaActivity"/>
+        <activity android:name="com.santotomas.stand_up_versionFinal.HomeActivity"/>
         <activity
-            android:name=".MainActivity"
+            android:name="com.santotomas.stand_up_versionFinal.MainActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

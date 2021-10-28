@@ -6,7 +6,7 @@ plugins {
 android {
     signingConfigs {
         debug {
-            storeFile file('C:\\Users\\ismae\\Desktop\\CertificadoApk\\CertificadoApk.jks')
+            storeFile file('C:\\Users\\Sepuls Pc\'s\\Desktop\\CertificadoApk\\CertificadoApk.jks')
             storePassword 'standup123'
             keyAlias 'StandUp'
             keyPassword 'standup123'
